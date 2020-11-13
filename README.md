@@ -77,4 +77,4 @@ We want you to know that the login and registration code we have given you is fa
 You will be using [session storage](https://javascript.info/localstorage#sessionstorage) to keep track of which user has logged into Nutshell. You need to read the code in the **`LoginForm`** and **`RegisterForm`** components so that you see what is going on, but you do not need to change it. However, you will have to use a custom message that is being dispatched by those components.
 
 
-![](./images/Nutshell.png)
+![](./src/images/Nutshell.png)
