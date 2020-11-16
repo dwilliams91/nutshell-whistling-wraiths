@@ -7,39 +7,38 @@ const eventHub = document.querySelector(".container")
 
 //Renders all events to the DOM, ensuring that soonest event is displayed first and has a special class
 export const EventList = () => {
-    // const displayTarget = document.querySelector(".events__display")
+    const displayTarget = document.querySelector(".events__display")
 
-    // let allEvents = []
-    // const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
+    let allEvents = []
+    const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
 
-    // getEvents()
-    //     .then(() => {
-    //         allEvents = useEvents()
+    getEvents()
+        .then(() => {
+            allEvents = useEvents()
 
-    //         // Filters all events down to only events for the current user
-    //         const currentEvents = allEvents.filter(events => events.userId === userIdNumber)
+            // Filters all events down to only events for the current user
+            const currentEvents = allEvents.filter(events => events.userId === userIdNumber)
             
-    //         // Sorts events by date, oldest to newest
-    //         const eventsByDate = currentEvents.slice().sort((a, b) =>  {
-    //             return new Date(a.date) - new Date(b.date)
-    //         })
-     
-    //         // Returns the chronologically soonest future vent
-    //         const nearestEvent = eventsByDate.find(event => Date.now() < Date.parse(event.date))
+            // Sorts events by date, oldest to newest
+            const eventsByDate = currentEvents.slice().sort((a, b) =>  {
+                return new Date(a.date) - new Date(b.date)
+            })
+            // Returns the chronologically soonest future vent
+            const nearestEvent = eventsByDate.find(event => Date.now() < Date.parse(event.date))
             
-    //         const indexToRemove = eventsByDate.indexOf(nearestEvent)
+            const indexToRemove = eventsByDate.indexOf(nearestEvent)
 
-    //         eventsByDate.splice(indexToRemove, 1)
+            eventsByDate.splice(indexToRemove, 1)
 
                     
-    //         // Creates 2 strings, one for the nearestEvent and one for all other events and adds them together and appends to the DOM
-    //         const firstEventString = FirstEvent(nearestEvent)
-    //         const otherEventsString = eventsByDate.map(event => {
-    //             return Event(event)
-    //         }).join("")
+            // Creates 2 strings, one for the nearestEvent and one for all other events and adds them together and appends to the DOM
+            const firstEventString = FirstEvent(nearestEvent)
+            const otherEventsString = eventsByDate.map(event => {
+                return Event(event)
+            }).join("")
 
-    //         displayTarget.innerHTML = firstEventString + otherEventsString
-    //     })
+            displayTarget.innerHTML = firstEventString + otherEventsString
+        })
 
 }
 
