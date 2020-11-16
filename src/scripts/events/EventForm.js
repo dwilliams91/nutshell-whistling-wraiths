@@ -17,7 +17,7 @@ export const EventForm = () => {
     <form action="">
     <fieldset>
         <label for="eventDate">Date</label>
-            <input type="text" name="eventDate" id="eventDate">
+            <input type="date" name="eventDate" id="eventDate">
     </fieldset>
 </form>
 <form action="">
