@@ -1,9 +1,13 @@
 import { LoginForm } from "./auth/LoginForm.js"
 import { RegisterForm } from "./auth/RegisterForm.js"
+import { FriendList } from "./friends/FriendList.js"
 import { Nutshell } from "./Nutshell.js"
 
 LoginForm()
 RegisterForm()
+// FriendList()
+
+// Nutshell()
 /*
     1. Check if the user is authenticated by looking in session storage for `activeUser`
     2. If so, render the Nutshell component
