@@ -6,8 +6,8 @@ export const taskHtml = (taskObj) => {
     <div class="task__card">
         <h3>${taskObj.task}</h3>
         <p>Expected Completion Date: ${taskObj.completionDate}</p>
-        <label for="taskComplete">Select once task completed</label>
-        <input type="radio" id="taskComplete" value="check once completed">
+        <label for="taskComplete--${taskObj.id}">Select once task completed</label>
+        <input type="radio" id="taskComplete--${taskObj.id}" value="check once completed">
         <button id="deleteTask--${taskObj.id}">Delete task</button>
     </div>
     `
@@ -20,5 +20,18 @@ eventHub.addEventListener("click", event => {
         const [prefix, id] = event.target.id.split("--")
         // Pass that ID as the argument for the deleteTask function
         deleteTask(id)        
+    }
+})
+
+// Dispatch to taskList.js when radio button selected
+eventHub.addEventListener("change", event => {
+    if (event.target.id.startsWith("taskComplete--")) {
+        const [prefix, id] = event.target.id.split("--")
+        const radioButtonClicked = new CustomEvent("taskCompleted", {
+            detail: {
+                id: parseInt(id)
+            }
+        })
+        eventHub.dispatchEvent(radioButtonClicked)
     }
 })

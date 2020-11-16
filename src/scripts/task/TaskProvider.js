@@ -46,3 +46,17 @@ export const deleteTask = (id) => {
     // run this function to dispatch to taskList.js
     .then(dispatchStateChangeEvent)    
 }
+
+// Once this is run, it will update/edit an existing task object in the JSON server
+export const updateTask = (task) => {
+    return fetch(`http://localhost:8088/tasks/${task.id}`, {
+        method: "PUT",
+        headers: {"content-type": "application/json"
+},
+        body: JSON.stringify(task)
+    })
+    // get tasks again, since they have been updated
+    .then(getTasks)
+    // run this function to dispatch to taskList.js
+    .then(dispatchStateChangeEvent) 
+}
