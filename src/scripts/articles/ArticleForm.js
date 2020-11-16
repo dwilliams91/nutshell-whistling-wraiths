@@ -34,8 +34,6 @@ export const ArticleForm = () => {
 eventHub.addEventListener("click", e => {
     if (e.target.id === "save__article") {
 
-        console.log("hi")
-
         const synopsis = document.getElementById("articleSynopsis").value
         const title = document.getElementById("articleTitle").value
         const url = document.getElementById("articleURL").value

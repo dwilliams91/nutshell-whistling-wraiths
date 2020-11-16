@@ -2,12 +2,15 @@ import { LoginForm } from "./auth/LoginForm.js"
 import { RegisterForm } from "./auth/RegisterForm.js"
 import { FriendList } from "./friends/FriendList.js"
 import { Nutshell } from "./Nutshell.js"
+import "./task/taskForm.js"
 
-LoginForm()
-RegisterForm()
-// FriendList()
-
-// Nutshell()
+// check if the session id has anything in it. If so, load their page. If not, load the log in/register page
+if (sessionStorage.getItem("activeUser")) {
+    Nutshell()
+} else {
+    LoginForm()
+    RegisterForm()
+}
 /*
     1. Check if the user is authenticated by looking in session storage for `activeUser`
     2. If so, render the Nutshell component

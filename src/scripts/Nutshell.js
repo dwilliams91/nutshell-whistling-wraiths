@@ -1,5 +1,7 @@
+import { taskList } from "./task/taskList.js"
 import { ArticleForm } from "./articles/ArticleForm.js"
 import { ArticleList } from "./articles/ArticleList.js"
+import { EventList } from "./events/EventList.js"
 import { getMessages, useMessages } from "./message/MessageDataProvider.js"
 import { messageForm } from "./message/MessageForm.js"
 import { messageList } from "./message/MessageList.js"
@@ -26,6 +28,8 @@ export const Nutshell = () => {
         <div class="events__display">
             <p>EventCards Go here</p>
         </div>
+        <div class="event__form">
+        </div>
         <button id="event__save"> new event</button>
     </article>
     <article class="section tasks">
@@ -33,7 +37,7 @@ export const Nutshell = () => {
         <div class="tasks__display">
             <p>Event Cards</p>
         </div>
-        <button id="task__save"> new tasks</button>
+        <button id="task__save"> new task</button>
     </article>
     <article class="section articles">
         <h2>article</h2>
@@ -49,10 +53,20 @@ export const Nutshell = () => {
     </article>
 
 </section>`
-
+taskList()
 messageList()
 ArticleList()
 messageForm()
+EventList()
 
 }
+eventHub.addEventListener("userAuthenticated", Nutshell)
+
+// This will dispatch to taskForm.js
+eventHub.addEventListener("click", event => {
+    if (event.target.id === "task__save") {
+        const addTask = new CustomEvent("createTask")
+        eventHub.dispatchEvent(addTask)
+    }
+})
 eventHub.addEventListener("userAuthenticated", Nutshell)
