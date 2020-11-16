@@ -1,3 +1,4 @@
+// This function will take an individual task object and return an html string
 export const taskHtml = (taskObj) => {
     return `
     <div class="task__card">
