@@ -36,3 +36,13 @@ const dispatchStateChangeEvent = () => {
     const tasksStateChanged = new CustomEvent("taskStateChanged")
     eventHub.dispatchEvent(tasksStateChanged)
 }
+
+export const deleteTask = (id) => {
+    return fetch(`http://localhost:8088/tasks/${id}`, {
+        method: "delete"
+    })
+    // get tasks again, since they have been updated
+    .then(getTasks)
+    // run this function to dispatch to taskList.js
+    .then(dispatchStateChangeEvent)    
+}
