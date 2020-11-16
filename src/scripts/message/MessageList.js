@@ -43,3 +43,18 @@ eventhub.addEventListener("click", click=>{
     }
 
 })
+eventhub.addEventListener("click", click=>{
+    // checks to see if the click happened on a delete button
+    if (click.target.id.startsWith("messageEdit--")){
+        // splits the delete into two parts to get just the id
+        const [prefix,id]=click.target.id.split("--")
+        console.log(id)
+        // sends that id to the delete function and then calls message list to rerender to the dom
+        // deleteMessage(id)
+        // .then(()=>{
+        //     messageList()
+        // })
+        
+    }
+
+})
