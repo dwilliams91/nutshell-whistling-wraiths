@@ -27,6 +27,5 @@ const render=(messages,users)=>{
     }).join('')
     // puts everything in the target
     contentTarget.innerHTML=messagesHTML
-
 }
 

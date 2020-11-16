@@ -1,3 +1,4 @@
+
 let messages = []
 
 export const useMessages = () => {
@@ -11,6 +12,15 @@ export const getMessages = () => {
             messages = parsedMessages
         })
 }
-
+export const saveMessages=(message)=>{
+    return fetch(`http://localhost:8088/messages`,{
+        method:"POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(message)
+    })
+    .then(getMessages)
+}
 
 
