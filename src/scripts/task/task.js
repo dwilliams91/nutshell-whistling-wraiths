@@ -1,4 +1,4 @@
-// This function will take an individual task object and return an html string
+// This function will take an individual task object and return an html string. I put it in a div called task card for styling purposes in the future.
 export const taskHtml = (taskObj) => {
     return `
     <div class="task__card">

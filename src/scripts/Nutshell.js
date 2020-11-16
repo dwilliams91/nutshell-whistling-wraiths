@@ -1,3 +1,5 @@
+import { taskList } from "./task/taskList.js"
+
 const contentTarget = document.querySelector(".dashboard")
 const eventHub = document.querySelector(".container")
 export const Nutshell = () => {
@@ -46,6 +48,7 @@ export const Nutshell = () => {
         </div>
     </article>
 
-</section>`
+</section>`;
+taskList()
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
