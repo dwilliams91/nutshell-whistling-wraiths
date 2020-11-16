@@ -1,6 +1,7 @@
 import { ArticleForm } from "./articles/ArticleForm.js"
 import { ArticleList } from "./articles/ArticleList.js"
 import { getMessages, useMessages } from "./message/MessageDataProvider.js"
+import { messageForm } from "./message/MessageForm.js"
 import { messageList } from "./message/MessageList.js"
 
 const contentTarget = document.querySelector(".dashboard")
@@ -17,8 +18,8 @@ export const Nutshell = () => {
         <div class="messages__display">
             <p>first message here</p>
         </div>
-        <input type="text" id="messages__form">
-        <button id="messages__save"> post</button>
+        <div class="messages__form"></div>
+        
     </article>
     <article class="events">
         <h2>events</h2>
@@ -57,6 +58,7 @@ export const Nutshell = () => {
 
 messageList()
 ArticleList()
+messageForm()
 
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
