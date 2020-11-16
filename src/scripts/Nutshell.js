@@ -1,9 +1,11 @@
 import { taskList } from "./task/taskList.js"
+import { getMessages, useMessages } from "./message/MessageDataProvider.js"
+import { messageList } from "./message/MessageList.js"
 
 const contentTarget = document.querySelector(".dashboard")
 const eventHub = document.querySelector(".container")
 export const Nutshell = () => {
-    // Render all your UI components here
+    
     contentTarget.innerHTML = `<header>
     <h1>Title</h1>
 </header>
@@ -48,7 +50,9 @@ export const Nutshell = () => {
         </div>
     </article>
 
-</section>`;
+</section>`
 taskList()
+messageList()
+
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
