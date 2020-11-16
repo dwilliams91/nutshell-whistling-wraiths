@@ -5,6 +5,7 @@ import { EventList } from "./events/EventList.js"
 import { getMessages, useMessages } from "./message/MessageDataProvider.js"
 import { messageForm } from "./message/MessageForm.js"
 import { messageList } from "./message/MessageList.js"
+import { FriendList } from "./friends/FriendList.js"
 
 const contentTarget = document.querySelector(".dashboard")
 const eventHub = document.querySelector(".container")
@@ -58,6 +59,7 @@ messageList()
 ArticleList()
 messageForm()
 EventList()
+FriendList()
 
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
