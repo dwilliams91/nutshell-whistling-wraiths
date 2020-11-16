@@ -47,6 +47,5 @@ export const Nutshell = () => {
     </article>
 
 </section>`
-
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
