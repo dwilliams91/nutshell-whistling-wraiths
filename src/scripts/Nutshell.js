@@ -56,3 +56,11 @@ messageList()
 
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
+
+// This will dispatch to taskForm.js
+eventHub.addEventListener("click", event => {
+    if (event.target.id === "task__save") {
+        const addTask = new CustomEvent("createTask")
+        eventHub.dispatchEvent(addTask)
+    }
+})

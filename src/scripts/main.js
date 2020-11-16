@@ -1,6 +1,7 @@
 import { LoginForm } from "./auth/LoginForm.js"
 import { RegisterForm } from "./auth/RegisterForm.js"
 import { Nutshell } from "./Nutshell.js"
+import "./task/taskForm.js"
 
 LoginForm()
 RegisterForm()
