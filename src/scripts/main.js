@@ -1,5 +1,6 @@
 import { LoginForm } from "./auth/LoginForm.js"
 import { RegisterForm } from "./auth/RegisterForm.js"
+import { FriendList } from "./friends/FriendList.js"
 import { Nutshell } from "./Nutshell.js"
 import "./task/taskForm.js"
 

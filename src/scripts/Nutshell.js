@@ -1,6 +1,7 @@
 import { taskList } from "./task/taskList.js"
 import { ArticleForm } from "./articles/ArticleForm.js"
 import { ArticleList } from "./articles/ArticleList.js"
+import { EventList } from "./events/EventList.js"
 import { getMessages, useMessages } from "./message/MessageDataProvider.js"
 import { messageForm } from "./message/MessageForm.js"
 import { messageList } from "./message/MessageList.js"
@@ -26,6 +27,8 @@ export const Nutshell = () => {
         <h2>events</h2>
         <div class="events__display">
             <p>EventCards Go here</p>
+        </div>
+        <div class="event__form">
         </div>
         <button id="event__save"> new event</button>
     </article>
@@ -60,6 +63,7 @@ taskList()
 messageList()
 ArticleList()
 messageForm()
+EventList()
 
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
