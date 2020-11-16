@@ -62,7 +62,6 @@ ArticleList()
 messageForm()
 
 }
-<<<<<<< HEAD
 eventHub.addEventListener("userAuthenticated", Nutshell)
 
 // This will dispatch to taskForm.js
@@ -72,6 +71,4 @@ eventHub.addEventListener("click", event => {
         eventHub.dispatchEvent(addTask)
     }
 })
-=======
 eventHub.addEventListener("userAuthenticated", Nutshell)
->>>>>>> master
