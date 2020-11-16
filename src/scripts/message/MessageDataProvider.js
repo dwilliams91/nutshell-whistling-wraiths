@@ -22,5 +22,12 @@ export const saveMessages=(message)=>{
     })
     .then(getMessages)
 }
+export const deleteMessage=(messageId)=>{
+    console.log(`http://localhost:8088/messages/${messageId}`)
 
+    return fetch(`http://localhost:8088/messages/${messageId}`,{
+    // method:"delete"
+    })
+    .then(getMessages)
+}
 

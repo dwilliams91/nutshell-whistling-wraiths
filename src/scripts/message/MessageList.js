@@ -28,4 +28,10 @@ const render=(messages,users)=>{
     // puts everything in the target
     contentTarget.innerHTML=messagesHTML
 }
+eventhub.addEventListener("click", click=>{
+    if (click.target.id.startsWith("messageDelete--")){
+        const [prefix,id]=click.target.id.split("--")
+        console.log(id)
+    }
 
+})

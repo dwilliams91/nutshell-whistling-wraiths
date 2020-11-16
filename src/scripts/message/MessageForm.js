@@ -29,7 +29,6 @@ eventhub.addEventListener("click",click=>{
         saveMessages(newMessage)
         .then(messageList)
         .then(messageForm)
-
-        
     }
 })
+
