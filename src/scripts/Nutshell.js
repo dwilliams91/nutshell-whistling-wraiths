@@ -10,11 +10,11 @@ const eventHub = document.querySelector(".container")
 export const Nutshell = () => {
     
     contentTarget.innerHTML = `<header>
-    <h1>Title</h1>
+    <h1>Nutshell</h1>
 </header>
 <section class="formArea"></section>
 <section class="homePage">
-    <article class="messages">
+    <article class="section messages">
         <h2>messages</h2>
         <div class="messages__display">
             <p>first message here</p>
@@ -22,21 +22,21 @@ export const Nutshell = () => {
         <div class="messages__form"></div>
         
     </article>
-    <article class="events">
+    <article class="section events">
         <h2>events</h2>
         <div class="events__display">
             <p>EventCards Go here</p>
         </div>
         <button id="event__save"> new event</button>
     </article>
-    <article class="tasks">
+    <article class="section tasks">
         <h2>tasks</h2>
         <div class="tasks__display">
             <p>Event Cards</p>
         </div>
         <button id="task__save"> new task</button>
     </article>
-    <article class="articles">
+    <article class="section articles">
         <h2>article</h2>
         <div class="articles__display">
             <p>Article Cards Go here</p>
@@ -45,7 +45,7 @@ export const Nutshell = () => {
         </div>
         <button id="article__save"> new article</button>
     </article>
-    <article class="friends">
+    <article class="section friends">
         <h2>friends</h2>
         <div class="friends__form">
             <button id="add_friend">add friend</button>
