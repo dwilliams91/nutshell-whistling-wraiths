@@ -1,4 +1,4 @@
-import { getMessages, useMessages } from "./MessageDataProvider.js"
+import { deleteMessage, getMessages, useMessages } from "./MessageDataProvider.js"
 import {messageHTMLCreator} from "./Message.js"
 import { getUsers, useUsers } from "../user/UserDataProvider.js"
 
@@ -27,6 +27,19 @@ const render=(messages,users)=>{
     }).join('')
     // puts everything in the target
     contentTarget.innerHTML=messagesHTML
-
 }
+// listen for a click
+eventhub.addEventListener("click", click=>{
+    // checks to see if the click happened on a delete button
+    if (click.target.id.startsWith("messageDelete--")){
+        // splits the delete into two parts to get just the id
+        const [prefix,id]=click.target.id.split("--")
+        // sends that id to the delete function and then calls message list to rerender to the dom
+        deleteMessage(id)
+        .then(()=>{
+            messageList()
+        })
+        
+    }
 
+})
