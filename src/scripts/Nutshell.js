@@ -46,12 +46,6 @@ export const Nutshell = () => {
     </article>
     <article class="section friends">
         <h2>friends</h2>
-        <div class="friends__form">
-            <button id="add_friend">add friend</button>
-        </div>
-        <div class="friends__display">
-            <p>FriendsCards Go here</p>
-        </div>
     </article>
 
 </section>`

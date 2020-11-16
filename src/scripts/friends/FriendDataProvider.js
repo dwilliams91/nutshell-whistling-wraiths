@@ -39,12 +39,6 @@ export const saveFriend = friend => {
     .then(getFriends)
 }
 
-eventHub.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "add_friend")  {
-    console.log("add friend button clicked");
-    }
-})
-
 
 // Story
 // As a user, I should be able to add other users as friends so they can view my information

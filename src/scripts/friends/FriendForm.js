@@ -1,8 +1,24 @@
-const contentTarget = document.querySelector(".friends__form")
+import { saveFriend } from "./FriendDataProvider.js"
+import { FriendList } from "./FriendList.js"
 
+const eventHub = document.querySelector(".container")
 
-contentTarget.innerHTML = `
-    <div class="friend__input">
-    <textarea id="entryText" placeholder="Write New Friend's Name Here"></textarea> 
-    <button id="add_friend">add friend</button>
-    </div>`
+eventHub.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "add_friend")  {
+        const following = parseInt(document.getElementById("friend__dropdown").value)
+
+        const saveFriend = new CustomEvent ("saveFriend", {
+            detail: {
+                following,
+                userId: parseInt(sessionStorage.activeUser)
+            }
+        })
+        console.log("add friend button clicked", following)
+    eventHub.dispatchEvent(saveFriend)
+    }
+})
+
+eventHub.addEventListener("saveFriend", e => {
+    saveFriend(e.detail)
+    .then(FriendList)
+})
