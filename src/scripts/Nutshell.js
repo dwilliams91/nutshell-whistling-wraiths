@@ -1,7 +1,7 @@
 const contentTarget = document.querySelector(".dashboard")
 const eventHub = document.querySelector(".container")
 export const Nutshell = () => {
-    // Render all your UI components here
+    
     contentTarget.innerHTML = `<header>
     <h1>Title</h1>
 </header>
@@ -47,6 +47,6 @@ export const Nutshell = () => {
     </article>
 
 </section>`
-
+// console.log(sessionStorage.getItem("activeUser"))
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
