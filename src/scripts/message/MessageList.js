@@ -44,16 +44,17 @@ eventhub.addEventListener("click", click=>{
 
 })
 eventhub.addEventListener("click", click=>{
-    // checks to see if the click happened on a delete button
+    // checks to see if the click happened on a edit button
     if (click.target.id.startsWith("messageEdit--")){
-        // splits the delete into two parts to get just the id
+        // splits the edit into two parts to get just the id
         const [prefix,id]=click.target.id.split("--")
-        console.log(id)
-        // sends that id to the delete function and then calls message list to rerender to the dom
-        // deleteMessage(id)
-        // .then(()=>{
-        //     messageList()
-        // })
+        // creates a custom event that dispatches the id  of the message you want to edit. Listens for it in MessageForm around line 62
+        const editMessageEvent= new CustomEvent("editMessage", {
+            detail:{
+                messageId: id
+            }
+        })
+        eventhub.dispatchEvent(editMessageEvent)
         
     }
 
