@@ -10,8 +10,7 @@ export const ArticleList = () => {
     const displayTarget = document.querySelector(".articles__display")
 
     let allArticles = []
-    let userIdNumber = sessionStorage.getItem("activeUser")
-    console.log(userIdNumber)
+    const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
 
     getArticles()
         .then(() => {

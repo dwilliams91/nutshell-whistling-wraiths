@@ -46,7 +46,7 @@ eventHub.addEventListener("click", e => {
                 synopsis,
                 url,
                 timestamp: Date.now(),
-                userId: sessionStorage.getItem("activeUser")
+                userId: parseInt(sessionStorage.getItem("activeUser"))
             }
         })
 
