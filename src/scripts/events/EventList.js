@@ -33,7 +33,7 @@ export const EventList = () => {
 
 
             // Creates 2 strings, one for the nearestEvent and one for all other events and adds them together and appends to the DOM
-            if (nearestEvent !== undefined) {
+            if (nearestEvent !== undefined && eventsByDate.length >= 1) {
                 const firstEventString = FirstEvent(nearestEvent)
                 const otherEventsString = eventsByDate.map(event => {
                     return Event(event)
