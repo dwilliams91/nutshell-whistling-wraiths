@@ -22,6 +22,7 @@ eventHub.addEventListener("createTask", taskForm)
 eventHub.addEventListener("click", event => {
     contentContainer = document.querySelector(".formArea")
     if (event.target.id === "saveTask") {
+        // Use parseInt to be sure it saves the foreign key as an integer instead of a string
         const userId = parseInt(sessionStorage.getItem("activeUser"))
         const task = document.querySelector("#task--name").value
         const completionDate = document.querySelector("#task--completionDate").value
@@ -35,6 +36,7 @@ eventHub.addEventListener("click", event => {
         }
         // get this from TaskProvider.js
         saveTask(newTask)
+        // set the form container back to empty after clicking the save button
         contentContainer.innerHTML = ""
     }
 })

@@ -6,6 +6,8 @@ export const taskHtml = (taskObj) => {
     <div class="task__card">
         <h3>${taskObj.task}</h3>
         <p>Expected Completion Date: ${taskObj.completionDate}</p>
+        <label for="taskComplete">Select once task completed</label>
+        <input type="radio" id="taskComplete" value="check once completed">
         <button id="deleteTask--${taskObj.id}">Delete task</button>
     </div>
     `

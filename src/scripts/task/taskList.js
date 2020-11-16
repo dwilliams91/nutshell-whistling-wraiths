@@ -25,7 +25,7 @@ export const taskList = () => {
 const render = () => {
     // Select the html element to render to
     const contentContainer = document.querySelector(".tasks__display")
-    // get the id of the current user
+    // get the id of the current user. Use parseInt to convert from string to integer
     const id = parseInt(sessionStorage.getItem("activeUser"))
     // get the tasks related to the current user
     const relatedTasks = taskArr.filter(task => task.userId === id)
