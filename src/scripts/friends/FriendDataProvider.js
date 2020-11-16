@@ -40,6 +40,16 @@ export const saveFriend = friend => {
 }
 
 
+export const deleteFriend = (id) => {
+    return fetch(`http://localhost:8088/friends/${id}`, {
+        method: "delete"
+    })
+    // get tasks again, since they have been updated
+    .then(getTasks)
+    // run this function to dispatch to taskList.js
+    .then(dispatchStateChangeEvent)    
+}
+
 // Story
 // As a user, I should be able to add other users as friends so they can view my information
 
@@ -53,7 +63,7 @@ export const saveFriend = friend => {
 
 // Given an active user wants to add another user to their friends list, but has no chat messages from that user
 // When the active user performs a gesture on the Add a friend affordance
-// Then the active user will be presented with an input field in which the other user's name can be entered
+// Then the active user will be presented with an input field in which the other user's name can be entered ??
 
 // Given an active user has entered in another user's name in order to add that user to their friend list
 // When the active user performs a gesture on the Save affordance

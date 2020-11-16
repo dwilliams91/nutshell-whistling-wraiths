@@ -26,17 +26,19 @@ const render = () => {
 // debugger
             const matchingRelationships = friendRelationshipArray.filter(rel => parseInt(sessionStorage.activeUser) === rel.userId)
         // now convert the matching instances to some names
-            const matchedUserProfile = matchingRelationships.map(rel => {
-                // use a forEach() above 
+            // const matchedUserProfile = matchingRelationships.map(rel => {
+                // const matchedUserProfile = 
+                matchingRelationships.forEach(rel => {    
+                
                 const matchingUserObject = userDataArray.find(user => user.id === rel.following )
                 // console.log(matchingUserObject);
                 friendDisplayHTML += FriendCardHTML(matchingUserObject) 
-                return matchingUserObject
+                
                 // above return not needed with forEach
         })
 
     let dropdownHTML = userDataArray.map((user) => {
-
+        // i would like to add logic here to test if the person is already a user's friend
         if (user.id !== parseInt(sessionStorage.activeUser)) {
             return `<option value="${user.id}">${user.username}</option>`
         }}).join("")
