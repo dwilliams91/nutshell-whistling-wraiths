@@ -31,7 +31,7 @@ export const Nutshell = () => {
         <div class="tasks__display">
             <p>Event Cards</p>
         </div>
-        <button id="task__save"> new tasks</button>
+        <button id="task__save"> new task</button>
     </article>
     <article class="articles">
         <h2>article</h2>
