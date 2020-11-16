@@ -1,3 +1,5 @@
+import { ArticleForm } from "./articles/ArticleForm.js"
+import { ArticleList } from "./articles/ArticleList.js"
 import { getMessages, useMessages } from "./message/MessageDataProvider.js"
 import { messageList } from "./message/MessageList.js"
 
@@ -37,6 +39,8 @@ export const Nutshell = () => {
         <div class="articles__display">
             <p>Article Cards Go here</p>
         </div>
+        <div class="article__form">
+        </div>
         <button id="article__save"> new article</button>
     </article>
     <article class="friends">
@@ -52,6 +56,7 @@ export const Nutshell = () => {
 </section>`
 
 messageList()
+ArticleList()
 
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)

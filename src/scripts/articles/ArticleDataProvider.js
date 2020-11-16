@@ -1,12 +1,6 @@
 let articles = []
 const eventHub = document.querySelector(".container")
 
-const dispatchStateChangeEvent = () => {
-    const noteStateChangedEvent = new CustomEvent("noteStateChanged")
-
-    eventHub.dispatchEvent(noteStateChangedEvent)
-}
-
 export const getArticles = () => {
     return fetch("http://localhost:8088/articles")
     .then(response => response.json())
@@ -24,7 +18,6 @@ export const saveArticle = article => {
         body: JSON.stringify(article)
     })
     .then(getArticles)
-    .then(dispatchStateChangeEvent)
 }
 
 export const deleteArticle = articleId => {
