@@ -32,7 +32,14 @@ eventHub.addEventListener("click", e => {
         // that to target the frienship to delete from the JSON server by 
         // invoking deleteFriend
     console.log(id)
+    
     deleteFriend(id)
+    const friendDeleted=new CustomEvent("friendDeleted",{
+        detail:{
+            deleteFriend:id
+        }
+    })
+    eventHub.dispatchEvent(friendDeleted)
     }
 })
 

@@ -20,7 +20,7 @@ export const getFriends = () => {
     .then(updatedFriends => {
         friendsArray = updatedFriends
         // What should happen when we finally have the array?
-        console.log(friendsArray);
+        // console.log(friendsArray);
     })
 }
 
