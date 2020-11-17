@@ -5,7 +5,7 @@ const eventHub = document.querySelector(".container")
 
 //Renders article creation form HTML
 export const ArticleForm = () => {
-    const formTarget = document.querySelector(".article__form")
+    const formTarget = document.querySelector(".formArea")
 
     formTarget.innerHTML = `
     <form action="">
@@ -32,6 +32,7 @@ export const ArticleForm = () => {
 
 //Adds listener to eventHub to transmit custom event used for saving articles
 eventHub.addEventListener("click", e => {
+    const formTarget = document.querySelector(".formArea")
     if (e.target.id === "save__article") {
 
         const synopsis = document.getElementById("articleSynopsis").value
@@ -49,6 +50,9 @@ eventHub.addEventListener("click", e => {
         })
 
         eventHub.dispatchEvent(saveArticle)
+        // set the container back to emtpy
+        formTarget.innerHTML = ""
+
     }
 })
 
