@@ -63,3 +63,11 @@ eventHub.addEventListener("click", e => {
         ArticleForm()
     }
 })
+// re-renders when you add a friend
+eventHub.addEventListener("saveFriend", e => {
+    ArticleList()
+})
+// 
+eventHub.addEventListener("friendDeleted",e=>{
+    ArticleList()
+})
