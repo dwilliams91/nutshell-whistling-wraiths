@@ -60,7 +60,6 @@ ArticleList()
 messageForm()
 EventList()
 FriendList()
-privateMessageList()
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
 
