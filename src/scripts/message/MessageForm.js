@@ -24,9 +24,10 @@ eventhub.addEventListener("keyup", function(event) {
     
     if (event.keyCode === 13) {
     const checkingInput=document.querySelector("#messages__form").value
-    console.log(checkingInput)
+    if (checkingInput!==""){
      event.preventDefault();
      document.getElementById("messages__save").click();
+    }
     }
   });
 
