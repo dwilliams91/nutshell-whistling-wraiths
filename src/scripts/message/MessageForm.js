@@ -20,6 +20,13 @@ const render = (text) => {
     <button id="messages__save"> post</button>
     <input type="hidden" name="${text.id}" id="messageId">`
 }
+eventhub.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+     event.preventDefault();
+     document.getElementById("messages__save").click();
+    }
+  });
+
 
 eventhub.addEventListener("click", click => {
 
