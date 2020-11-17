@@ -6,8 +6,10 @@ import { Nutshell } from "../Nutshell.js"
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "add_friend")  {
-        const following = parseInt(document.getElementById("friend__dropdown").value)
+    // debugger
+    const following = parseInt(document.getElementById("friend__dropdown").value)
+
+    if (clickEvent.target.id === "add_friend" && following !==0)  {
 
         const saveFriend = new CustomEvent ("saveFriend", {
             detail: {

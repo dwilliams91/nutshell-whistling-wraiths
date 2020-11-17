@@ -42,3 +42,8 @@ h1{
     overflow: hidden
 }
 
+.friendStyle {
+    font-style: italic;
+    background-color: cornsilk;
+}
+
