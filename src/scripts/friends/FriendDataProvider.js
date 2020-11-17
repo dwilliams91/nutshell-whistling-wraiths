@@ -29,7 +29,12 @@ export const useFriends = () => {
 }
 
 export const saveFriend = friend => {
-    return fetch('http://localhost:8088/friends', {
+    const myfriends=useFriends()
+    
+    const previousFriend=myfriends.find(singlefriend => singlefriend.following===friend.following)
+    console.log(previousFriend)
+    if (previousFriend ===undefined){
+        return fetch('http://localhost:8088/friends', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -38,6 +43,14 @@ export const saveFriend = friend => {
     })
     .then(getFriends)
     .then(dispatchStateChangeEvent)
+
+    }
+    else{
+        console.log("this is already a friend")
+    }
+
+    
+    
 }
 
 const dispatchStateChangeEvent = () => {

@@ -53,6 +53,7 @@ const addFriendPrompt = (friendName, friendUserId) => {
 
 // now we listen for a name to be clicked on and give the user a prompt by invoking addFriendPrompt
 eventHub.addEventListener("addFriendFromMessagePrompt", e => {
+    console.log("add logic here")
     addFriendPrompt(e.detail.friendName, e.detail.userId)
 })
 
