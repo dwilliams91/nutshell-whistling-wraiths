@@ -20,7 +20,7 @@ const render = (userId) => {
 
     getEvents().then(getUsers).then(getFriends).then( () => {
     
-        const allUsers = useUsers()
+     const allUsers = useUsers()
     const currentUser = allUsers.find(user => user.id === userId)
     console.log(currentUser)
     const friendRelationships = useFriends()
@@ -61,13 +61,17 @@ const render = (userId) => {
         displayString = currentUserEvents.map(event => Event(event)).join("")
     }
     
-    const friendEventsString = friendEvents.forEach(innerArray => innerArray.map(content => {
-        return FriendEvent(currentUser, content)
-    }))
+    let allfriendEvents = []
+    friendEvents.forEach(innerArray => innerArray.forEach(obj => allfriendEvents.push(obj)))
+
+    console.log(friendEvents)
+
+    const friendEventsString = friendEvents.map(event => FriendEvent(event)).join("")
 
     console.log(friendEventsString)
     
     displayString += friendEventsString  
+
     displayTarget.innerHTML = displayString
 })
 }   
