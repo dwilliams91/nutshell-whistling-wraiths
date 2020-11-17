@@ -59,7 +59,7 @@ const render = (userId) => {
             return Event(event)
         }).join("")
 
-        dipslayString = firstEventString + otherEventsString
+        displayString = firstEventString + otherEventsString
     } else {
         displayString = currentUserEvents.map(event => Event(event)).join("")
     }
