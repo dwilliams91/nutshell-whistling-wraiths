@@ -50,3 +50,8 @@ eventHub.addEventListener("taskCompleted", event => {
     }
     updateTask(completedTask)
 })
+
+// Broadcast from task.js
+eventHub.addEventListener("taskEdit", event => {
+    const task = taskArr.find(task => task.id === event.detail.id)
+})

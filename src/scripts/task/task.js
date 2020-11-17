@@ -9,9 +9,23 @@ export const taskHtml = (taskObj) => {
         <label for="taskComplete--${taskObj.id}">Select once task completed</label>
         <input type="radio" id="taskComplete--${taskObj.id}" value="check once completed">
         <button id="deleteTask--${taskObj.id}">Delete task</button>
+        <button id="editTask--${taskObj.id}">Edit task</button>
     </div>
     `
 }
+
+// If the edit task button is clicked, dispatch this event and include the task objects id in the detail
+eventHub.addEventListener("click", event => {
+    if (event.target.id.startsWith("editTask")) {
+        const [prefix, id] = event.target.id.split("--")
+        const editTask = new CustomEvent("taskEdit", {
+            detail: {
+                id
+            }
+        })
+        eventHub.dispatchEvent(editTask)
+    }
+})
 
 // if delete button clicked, run the program from TaskProvider.js
 eventHub.addEventListener("click", event => {
