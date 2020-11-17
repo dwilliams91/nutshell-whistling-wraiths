@@ -5,48 +5,47 @@ import { deleteEvent, getEvents, useEvents } from "./EventDataProvider.js"
 import { EventForm } from "./EventForm.js"
 
 const eventHub = document.querySelector(".container")
-const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
-console.log(userIdNumber)
 
 //Renders all events to the DOM, ensuring that soonest event is displayed first and has a special class
 export const EventList = () => {
-        
-        render(userIdNumber)
-
+    
+    render()
+    
 }
 
-const render = (userId) => {
+const render = () => {
     const displayTarget = document.querySelector(".events__display")
+    const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
 
     getEvents().then(getUsers).then(getFriends).then( () => {
     
     //Gets all users and current user
     const allUsers = useUsers()
-    const currentUser = allUsers.find(user => user.id === userId)
+    const currentUser = allUsers.find(user => user.id === userIdNumber)
     
     //Gets all friendships and then an array of friendships involving the current user
     const friendRelationships = useFriends()
-    const relevantRelationships = friendRelationships.filter(relationship => relationship.following === currentUser.id)
+    const relevantRelationships = friendRelationships.filter(relationship => relationship.userId === currentUser.id)
 
-    //gets all events and then gets all events associated with currents users' friends
+    //gets all events and then gets all events associated with currents user's friends
     const allEvents = useEvents()
     const friendEvents =  relevantRelationships.map(relationship => {
-        return allEvents.filter(events => events.userId === relationship.userId)
+        return allEvents.filter(events => events.userId === relationship.following)
     })
     
-
+    console.log("relevant relationships:", relevantRelationships, "friendEvents: ", friendEvents)
     // Filters all events down to only events for the current user
     const currentUserEvents = allEvents.filter(events => events.userId === userIdNumber)
 
-    // Sorts events by date, oldest to newest
+    // Sorts current user's events by date, oldest to newest
     const eventsByDate = currentUserEvents.slice().sort((a, b) => {
         return new Date(a.date) - new Date(b.date)
     })
-    // Returns the chronologically soonest future vent
+    // Returns the chronologically soonest future event
     const nearestEvent = eventsByDate.find(event => Date.now() < Date.parse(event.date))
 
+    //Removes nearestEvent from eventsByDate array
     const indexToRemove = eventsByDate.indexOf(nearestEvent)
-
     eventsByDate.splice(indexToRemove, 1)
 
 
@@ -104,11 +103,12 @@ eventHub.addEventListener("click", e => {
     }
 })
 
-// re-renders when you add a friend
+//re-renders when you add a friend
 eventHub.addEventListener("saveFriend", e => {
     EventList()
 })
 // 
 eventHub.addEventListener("friendDeleted",e=>{
+    console.log("I'm reached")
     EventList()
 })
