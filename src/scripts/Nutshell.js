@@ -6,6 +6,7 @@ import { getMessages, useMessages } from "./message/MessageDataProvider.js"
 import { messageForm } from "./message/MessageForm.js"
 import { messageList } from "./message/MessageList.js"
 import { FriendList } from "./friends/FriendList.js"
+import { privateMessageList } from "./PrivateChat/PrivateChatList.js"
 
 const contentTarget = document.querySelector(".dashboard")
 const eventHub = document.querySelector(".container")
@@ -50,6 +51,7 @@ export const Nutshell = () => {
     <article class="section friends">
         <h2>friends</h2>
     </article>
+   
 
 </section>`
 taskList()
@@ -58,7 +60,7 @@ ArticleList()
 messageForm()
 EventList()
 FriendList()
-
+privateMessageList()
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
 

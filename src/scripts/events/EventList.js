@@ -33,7 +33,7 @@ const render = () => {
         return allEvents.filter(events => events.userId === relationship.following)
     })
     
-    console.log("relevant relationships:", relevantRelationships, "friendEvents: ", friendEvents)
+    // console.log("relevant relationships:", relevantRelationships, "friendEvents: ", friendEvents)
     // Filters all events down to only events for the current user
     const currentUserEvents = allEvents.filter(events => events.userId === userIdNumber)
 
@@ -70,7 +70,7 @@ const render = () => {
         }
     }
 
-    console.log(allfriendEvents)
+    // console.log(allfriendEvents)
 
     const friendEventsString = allfriendEvents.map(event => {
         const relatedUser=allUsers.find(user => user.id === event.userId)
@@ -78,7 +78,7 @@ const render = () => {
         return FriendEvent(event, relatedUser)
     }).join("")
 
-    console.log(friendEventsString)
+    // console.log(friendEventsString)
     
     displayString += friendEventsString  
 

@@ -9,6 +9,6 @@ export const FriendCardHTML = (matchedUserObject, friendshipArray) => {
     return `
     <h3>Friend's name: ${matchedUserObject.username}</h3>
     <button id="deleteFriendshipId--${friendshipId.id}">Remove Friend</button> 
-    <button id="chatFriendshipId--${friendshipId.id}">start chat</button> 
+    <button id="chatFriendshipId--${friendshipId.following}">start chat</button> 
     `
 }

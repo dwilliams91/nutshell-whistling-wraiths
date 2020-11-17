@@ -92,4 +92,16 @@ eventHub.addEventListener("click", e => {
     eventHub.dispatchEvent(friendDeleted)
     }
 })
+eventHub.addEventListener("click",click=>{
+    if(click.target.id.startsWith("chatFriendshipId--")){
+        const [prefix, id]= click.target.id.split("--")
+        const privateChat= new CustomEvent("privateChatStarted",{
+            detail:{
+                recieverId:id
+            }
+        })
+        // console.log(privateChat)
+        eventHub.dispatchEvent(privateChat)
+    }
+})
 
