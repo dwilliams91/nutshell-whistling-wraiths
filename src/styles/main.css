@@ -24,3 +24,21 @@ h1{
 .section > h2{
     text-align: center;
 }
+
+.section {
+    height: 350px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.messages__display {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 260px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.messages {
+    overflow: hidden
+}
+

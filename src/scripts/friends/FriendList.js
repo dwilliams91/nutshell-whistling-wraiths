@@ -15,7 +15,7 @@ export const FriendList = () => {
         .then(() => {
             friendRelationshipArray = useFriends()
             userDataArray = useUsers()
-            console.log("Currently logged in userId:", parseInt(sessionStorage.activeUser));
+            // console.log("Currently logged in userId:", parseInt(sessionStorage.activeUser));
             render()
         })
 }
@@ -32,7 +32,7 @@ const render = () => {
                 matchingRelationships.forEach(rel => {    
                 
                 const matchingUserObject = userDataArray.find(user => user.id === rel.following )
-                console.log(matchingRelationships);
+                // console.log(matchingRelationships);
                 friendDisplayHTML += FriendCardHTML(matchingUserObject, matchingRelationships) 
                 friendToAdd = matchingUserObject
                 // above return not needed with forEach
