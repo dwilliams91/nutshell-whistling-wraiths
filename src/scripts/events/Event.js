@@ -22,7 +22,7 @@ export const FirstEvent = (eventObj) => {
 
 export const FriendEvent = (eventObj, user) => {
     return `
-    <div class="friend__event" id="friendEvent__${eventObj.id}">
+    <div class="friend__event friendStyle" id="friendEvent__${eventObj.id}">
         <h4>${eventObj.name}</h4>
         <p class="associated__friend">Event posted by: ${user.username}</p>
         <p class="event__date">${eventObj.date}</p>

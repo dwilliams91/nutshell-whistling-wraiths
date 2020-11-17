@@ -59,6 +59,8 @@ const render = () => {
         }).join("")
 
         displayString = firstEventString + otherEventsString
+    } else if (nearestEvent !== undefined) {
+        displayString = FirstEvent(nearestEvent)
     } else {
         displayString = currentUserEvents.map(event => Event(event)).join("")
     }
