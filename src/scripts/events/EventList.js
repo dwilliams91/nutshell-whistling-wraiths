@@ -20,12 +20,15 @@ const render = (userId) => {
 
     getEvents().then(getUsers).then(getFriends).then( () => {
     
-     const allUsers = useUsers()
+    //Gets all users and current user
+    const allUsers = useUsers()
     const currentUser = allUsers.find(user => user.id === userId)
-    console.log(currentUser)
+    
+    //Gets all friendships and then an array of friendships involving the current user
     const friendRelationships = useFriends()
     const relevantRelationships = friendRelationships.filter(relationship => relationship.following === currentUser.id)
 
+    //gets all events and then gets all events associated with currents users' friends
     const allEvents = useEvents()
     const friendEvents =  relevantRelationships.map(relationship => {
         return allEvents.filter(events => events.userId === relationship.userId)
@@ -62,11 +65,19 @@ const render = (userId) => {
     }
     
     let allfriendEvents = []
-    friendEvents.forEach(innerArray => innerArray.forEach(obj => allfriendEvents.push(obj)))
+    for (const innerArray of friendEvents) {
+        for (const item of innerArray) {
+            allfriendEvents.push(item)
+        }
+    }
 
-    console.log(friendEvents)
+    console.log(allfriendEvents)
 
-    const friendEventsString = friendEvents.map(event => FriendEvent(event)).join("")
+    const friendEventsString = allfriendEvents.map(event => {
+        const relatedUser=allUsers.find(user => user.id === event.userId)
+        console.log(relatedUser)
+        return FriendEvent(event, relatedUser)
+    }).join("")
 
     console.log(friendEventsString)
     
