@@ -1,4 +1,5 @@
 import { getFriends, useFriends } from "../friends/FriendDataProvider.js"
+import { getUsers, useUsers } from "../user/UserDataProvider.js"
 import { Article } from "./Article.js"
 import { deleteArticle, getArticles, useArticles } from "./ArticleDataProvider.js"
 import { ArticleForm } from "./ArticleForm.js"
@@ -15,7 +16,10 @@ export const ArticleList = () => {
 
     getArticles()
         .then(getFriends)
+        .then(getUsers)
         .then(() => {
+            // get all the users
+            const allUsers=useUsers()
             // get all the articles
             allArticles = useArticles()
             // get all the friends
@@ -41,8 +45,11 @@ export const ArticleList = () => {
             // 
             // console.log("A single array of all the articles", allArticlesToDisplay)
             // this renders each article to the dom
+            
+            
             displayTarget.innerHTML = allArticlesToDisplay.map(article => {
-                return Article(article)
+                const relatedUser=allUsers.find(user=>user.id===article.userId)
+                return Article(article,relatedUser)
             }).join("")
         })
 }
