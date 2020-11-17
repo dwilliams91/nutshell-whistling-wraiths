@@ -1,16 +1,19 @@
-import { Event, FirstEvent } from "./Event.js"
+import { useFriends } from "../friends/FriendDataProvider.js"
+import { getUsers, useUsers } from "../user/UserDataProvider.js"
+import { Event, FirstEvent, FriendEvent } from "./Event.js"
 import { deleteEvent, getEvents, useEvents } from "./EventDataProvider.js"
 import { EventForm } from "./EventForm.js"
 
 const eventHub = document.querySelector(".container")
-
+const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
+console.log(userIdNumber)
 
 //Renders all events to the DOM, ensuring that soonest event is displayed first and has a special class
 export const EventList = () => {
     const displayTarget = document.querySelector(".events__display")
 
     let allEvents = []
-    const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
+    
 
     getEvents()
         .then(() => {
@@ -42,10 +45,29 @@ export const EventList = () => {
             } else {
                 displayTarget.innerHTML = currentEvents.map(event => Event(event)).join("")
             }
+            renderFriendEvents(userIdNumber)
         })
 
 
 }
+
+const renderFriendEvents = (userId) => {
+    getUsers().then( () => {
+    const allUsers = useUsers()
+    const currentUser = allUsers.find(user => user.id === userId)
+    console.log(currentUser)
+    const friendRelationships = useFriends()
+    const relevantRelationships = friendRelationships.filter(relationship => relationship.following === currentUser.id)
+
+    const allEvents = useEvents()
+    const friendEvents =  relevantRelationships.map(relationship => {
+        return allEvents.filter(events => events.userId === relationship.following)
+    })
+    console.log(friendEvents)
+    console.log(userIdNumber)
+})
+}   
+
 
 eventHub.addEventListener("click", e => {
     if (e.target.id.startsWith("deleteEvent")) {
@@ -61,4 +83,8 @@ eventHub.addEventListener("click", e => {
     if (e.target.id === "event__save") {
         EventForm()
     }
+})
+
+eventHub.addEventListener("saveFriend", e => {
+
 })

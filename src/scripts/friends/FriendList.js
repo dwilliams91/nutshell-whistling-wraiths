@@ -7,6 +7,7 @@ const eventHub = document.querySelector(".container")
 
 let friendRelationshipArray = []
 let userDataArray = []
+let friendToAdd = {}
 
 export const FriendList = () => {
     getFriends()
@@ -33,7 +34,7 @@ const render = () => {
                 const matchingUserObject = userDataArray.find(user => user.id === rel.following )
                 console.log(matchingRelationships);
                 friendDisplayHTML += FriendCardHTML(matchingUserObject, matchingRelationships) 
-                
+                friendToAdd = matchingUserObject
                 // above return not needed with forEach
         })
 
