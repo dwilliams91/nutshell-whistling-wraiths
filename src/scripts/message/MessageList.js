@@ -18,8 +18,8 @@ export const messageList=()=>{
 const render=(messages,users)=>{
     // get the content target
     const contentTarget=document.querySelector(".messages__display")
-// go through all the messages
-    const messagesHTML=messages.map(individualMessage=> {
+// go through all the messages. Use the reverse method so that the newest message always displays on the bottom instead of the top.
+    const messagesHTML=messages.reverse().map(individualMessage=> {
         // for each message, find the matching user
         const relatedUser=users.find(user=>user.id===individualMessage.userId)
         // put the matching user and the message into the html creator in the message.js module
