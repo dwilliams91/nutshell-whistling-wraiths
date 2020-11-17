@@ -54,4 +54,8 @@ eventHub.addEventListener("click", e => {
 eventHub.addEventListener("saveEvent", e => {
     saveEvent(e.detail)
     .then(EventList)
+    .then( () => {
+        const formTarget = document.querySelector(".event__form")
+        formTarget.innerHTML = ""
+    })
 })
