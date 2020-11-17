@@ -23,7 +23,6 @@ export const EventList = () => {
             const eventsByDate = currentEvents.slice().sort((a, b) => {
                 return new Date(a.date) - new Date(b.date)
             })
-
             // Returns the chronologically soonest future vent
             const nearestEvent = eventsByDate.find(event => Date.now() < Date.parse(event.date))
 
