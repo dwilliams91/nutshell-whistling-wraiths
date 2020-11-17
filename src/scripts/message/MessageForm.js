@@ -21,7 +21,10 @@ const render = (text) => {
     <input type="hidden" name="${text.id}" id="messageId">`
 }
 eventhub.addEventListener("keyup", function(event) {
+    
     if (event.keyCode === 13) {
+    const checkingInput=document.querySelector("#messages__form").value
+    console.log(checkingInput)
      event.preventDefault();
      document.getElementById("messages__save").click();
     }
