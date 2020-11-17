@@ -1,3 +1,4 @@
+import { getFriends, useFriends } from "../friends/FriendDataProvider.js"
 import { Article } from "./Article.js"
 import { deleteArticle, getArticles, useArticles } from "./ArticleDataProvider.js"
 import { ArticleForm } from "./ArticleForm.js"
@@ -10,19 +11,23 @@ export const ArticleList = () => {
     const displayTarget = document.querySelector(".articles__display")
 
     let allArticles = []
+    const allFriends=[]
     const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
 
     getArticles()
+    .then(getFriends)
         .then(() => {
             allArticles = useArticles()
+            allFriends=useFriends()
+            console.log(allFriends)
+            console.log(allArticles)
 
             const currentArticles = allArticles.filter(articles => articles.userId === userIdNumber)
-
+            console.log(currentArticles)
             displayTarget.innerHTML = currentArticles.map(article => {
                 return Article(article)
             }).join("")
         })
-
 }
 
 //Adds listeners for deleting articles and displaying the adding form
