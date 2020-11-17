@@ -16,13 +16,11 @@ export const Nutshell = () => {
 </header>
 <section class="formArea"></section>
 <section class="homePage">
-    <article class="section messages">
-        <h2>messages</h2>
+    <article class="section messages">        
+        <h2 id="message-header">messages</h2>
         <div class="messages__display">
-            <p>first message here</p>
         </div>
         <div class="messages__form"></div>
-        
     </article>
     <article class="section events">
         <h2>events</h2>

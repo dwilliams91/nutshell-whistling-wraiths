@@ -16,7 +16,7 @@ export const messageForm = () => {
 // But will change if the user clicks on the edit button
 const render = (text) => {
     const contentTarget = document.querySelector(".messages__form")
-    contentTarget.innerHTML = `<input type="text" id="messages__form" value="${text.message}">
+    contentTarget.innerHTML = `<input type="text" placeholder="Type new post" id="messages__form" value="${text.message}">
     <button id="messages__save"> post</button>
     <input type="hidden" name="${text.id}" id="messageId">`
 }
