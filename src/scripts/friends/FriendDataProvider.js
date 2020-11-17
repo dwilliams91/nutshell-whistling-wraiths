@@ -30,8 +30,7 @@ export const useFriends = () => {
 
 export const saveFriend = friend => {
     const myfriends=useFriends()
-    
-    const previousFriend=myfriends.find(singlefriend => singlefriend.following===friend.following)
+    const previousFriend=myfriends.find(singlefriend => singlefriend.userId===friend.following)
     console.log(previousFriend)
     if (previousFriend ===undefined){
         return fetch('http://localhost:8088/friends', {
