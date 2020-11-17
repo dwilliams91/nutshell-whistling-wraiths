@@ -80,7 +80,7 @@ const render = () => {
         return FriendEvent(event, relatedUser)
     }).join("")
 
-    console.log(friendEventsString)
+    // console.log(friendEventsString)
     
     displayString += friendEventsString  
 
@@ -106,7 +106,7 @@ eventHub.addEventListener("click", e => {
 })
 
 //re-renders when you add a friend
-eventHub.addEventListener("saveFriend", e => {
+eventHub.addEventListener("friendSaved", e => {
     EventList()
 })
 // 

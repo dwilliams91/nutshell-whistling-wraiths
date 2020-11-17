@@ -11,19 +11,19 @@ eventHub.addEventListener("click", clickEvent => {
 
     if (clickEvent.target.id === "add_friend" && following !==0)  {
 
-        const saveFriend = new CustomEvent ("saveFriend", {
+        const friendSaved = new CustomEvent ("friendSaved", {
             detail: {
                 following,
                 userId: parseInt(sessionStorage.activeUser)
             }
         })
-        console.log("add friend button clicked", following)
-    eventHub.dispatchEvent(saveFriend)
+        // console.log("add friend button clicked", following)
+    eventHub.dispatchEvent(friendSaved)
     }
 })
 
 // when save friend button is clicked, pull the detail and pass it in to saveFriend function to post new friend object
-eventHub.addEventListener("saveFriend", e => {
+eventHub.addEventListener("friendSaved", e => {
     saveFriend(e.detail)
     .then(FriendList)
 })
@@ -46,7 +46,7 @@ eventHub.addEventListener("click", e => {
 
 // first we want to define a function which will render a prompt on the DOM
 const addFriendPrompt = (friendName, friendUserId) => {
-    const contentTarget = document.querySelector(".messages")
+    const contentTarget = document.querySelector("#addFriendTarget")
     contentTarget.innerHTML = `
         <p>Would you like to add ${friendName} as a friend?</p>
         <button id="yesAdd--${friendUserId}">Yes</button><button id="noThanks">No Thanks</option>
@@ -59,17 +59,21 @@ eventHub.addEventListener("addFriendFromMessagePrompt", e => {
     addFriendPrompt(e.detail.friendName, e.detail.userId)
 })
 
+
 // now we listen for that Yes button to be clicked, or perhaps there's a No
 // button option as well
 eventHub.addEventListener("click", e => {
+    let contentTarget = document.querySelector("#addFriendTarget");
+    
     if (e.target.id.startsWith("yesAdd--")) {
     const [prefix, uniqueId] = e.target.id.split("--")
     saveFriend({following: parseInt(uniqueId), userId: parseInt(sessionStorage.activeUser)})
-        .then(Nutshell)
+        contentTarget.innerHTML = ""
+        eventHub.dispatchEvent(friendFromMessage)
     }
     // this is the no button functionality
     else if (e.target.id === "noThanks") {
-        Nutshell()
+        contentTarget.innerHTML = "" 
     }
 })
 
