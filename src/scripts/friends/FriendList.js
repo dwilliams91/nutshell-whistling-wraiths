@@ -14,7 +14,7 @@ export const FriendList = () => {
         .then(() => {
             friendRelationshipArray = useFriends()
             userDataArray = useUsers()
-            console.log(parseInt(sessionStorage.activeUser));
+            console.log("Currently logged in userId:", parseInt(sessionStorage.activeUser));
             render()
         })
 }
@@ -24,15 +24,15 @@ const render = () => {
 
     let friendDisplayHTML = ""
 // debugger
-            const matchingRelationships = friendRelationshipArray.filter(rel => parseInt(sessionStorage.activeUser) === rel.userId)
+        const matchingRelationships = friendRelationshipArray.filter(rel => parseInt(sessionStorage.activeUser) === rel.userId)
         // now convert the matching instances to some names
             // const matchedUserProfile = matchingRelationships.map(rel => {
                 // const matchedUserProfile = 
                 matchingRelationships.forEach(rel => {    
                 
                 const matchingUserObject = userDataArray.find(user => user.id === rel.following )
-                // console.log(matchingUserObject);
-                friendDisplayHTML += FriendCardHTML(matchingUserObject) 
+                console.log(matchingRelationships);
+                friendDisplayHTML += FriendCardHTML(matchingUserObject, matchingRelationships) 
                 
                 // above return not needed with forEach
         })
@@ -43,7 +43,7 @@ const render = () => {
             return `<option value="${user.id}">${user.username}</option>`
         }}).join("")
 
-        friendsContainer.innerHTML = ` 
+    friendsContainer.innerHTML = ` 
 
         <h2>friends</h2>
         <div class="friends__form">
@@ -62,4 +62,4 @@ const render = () => {
 }
 
 eventHub.addEventListener("userAuthenticated", FriendList);
-eventHub.addEventListener("friendAdded", FriendList);
+eventHub.addEventListener("friendStateChanged", FriendList)

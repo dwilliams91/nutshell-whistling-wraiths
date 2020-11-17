@@ -1,4 +1,4 @@
-import { saveFriend } from "./FriendDataProvider.js"
+import { saveFriend, deleteFriend } from "./FriendDataProvider.js"
 import { FriendList } from "./FriendList.js"
 
 const eventHub = document.querySelector(".container")
@@ -26,8 +26,13 @@ eventHub.addEventListener("saveFriend", e => {
 
 // listen for deletion of friend button event, pull out friend id and cross-ref with friendRelationship array to delete approriate entry
 eventHub.addEventListener("click", e => {
-    if (e.target.id.startsWith("deleteFriend--")) {
+    if (e.target.id.startsWith("deleteFriendshipId--")) {
         const [prefix, id] = e.target.id.split("--")
+        // separate out the friendshipId from the button element name, use 
+        // that to target the frienship to delete from the JSON server by 
+        // invoking deleteFriend
     console.log(id)
+    deleteFriend(id)
     }
 })
+

@@ -1,8 +1,13 @@
 
-export const FriendCardHTML = (matchedUserObject) => {
+export const FriendCardHTML = (matchedUserObject, friendshipArray) => {
     // debugger
+    // we are passing along the friendshipId so that we can include it with a click event when 
+    // we later want to delete a specific friendship instance
+    const friendshipId = friendshipArray.find(
+        friendshipUnit => friendshipUnit.following === matchedUserObject.id)
+        // console.log("friendshipId: ", friendshipId.id);
     return `
     <h3>Friend's name: ${matchedUserObject.username}</h3>
-    <button id="deleteFriendshipId--${matchedUserObject.id}">Remove Friend</button> 
+    <button id="deleteFriendshipId--${friendshipId.id}">Remove Friend</button> 
     `
 }

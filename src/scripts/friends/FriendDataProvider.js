@@ -37,16 +37,21 @@ export const saveFriend = friend => {
         body: JSON.stringify(friend)
     })
     .then(getFriends)
+    .then(dispatchStateChangeEvent)
 }
 
+const dispatchStateChangeEvent = () => {
+    const friendStateChanged = new CustomEvent("friendStateChanged")
+    eventHub.dispatchEvent(friendStateChanged)
+}
 
 export const deleteFriend = (id) => {
     return fetch(`http://localhost:8088/friends/${id}`, {
         method: "delete"
     })
-    // get tasks again, since they have been updated
-    .then(getTasks)
-    // run this function to dispatch to taskList.js
+    // get friends again, since they have been updated
+    .then(getFriends)
+    // run this function to dispatch to friendList.js
     .then(dispatchStateChangeEvent)    
 }
 
