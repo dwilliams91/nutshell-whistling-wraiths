@@ -11,15 +11,14 @@ export const ArticleList = () => {
     const displayTarget = document.querySelector(".articles__display")
 
     let allArticles = []
-    const allFriends=[]
+    let allFriends=[]
     const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
 
     getArticles()
-    .then(getFriends)
-        .then(() => {
+    .then(getFriends())
+    .then(() => {
             allArticles = useArticles()
             allFriends=useFriends()
-            console.log(allFriends)
             console.log(allArticles)
 
             const currentArticles = allArticles.filter(articles => articles.userId === userIdNumber)
