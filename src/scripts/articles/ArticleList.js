@@ -11,19 +11,37 @@ export const ArticleList = () => {
     const displayTarget = document.querySelector(".articles__display")
 
     let allArticles = []
-    let allFriends=[]
     const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
 
     getArticles()
-    .then(getFriends())
-    .then(() => {
+        .then(getFriends)
+        .then(() => {
+            // get all the articles
             allArticles = useArticles()
-            allFriends=useFriends()
-            console.log(allArticles)
-
-            const currentArticles = allArticles.filter(articles => articles.userId === userIdNumber)
-            console.log(currentArticles)
-            displayTarget.innerHTML = currentArticles.map(article => {
+            // get all the friends
+            const allfriends = useFriends()
+            // find just the friends of the login user
+            const myfriends = allfriends.filter(friends => friends.userId === userIdNumber)
+            // go through each of my friends, for each of them check to see if they have any articles
+            const myFriendsArticles = myfriends.map(friend => {
+                let matchingArticleforSingleFriends = allArticles.filter(article => article.userId === friend.following)
+                return matchingArticleforSingleFriends
+            })
+            // find all of my articles
+            let myArticles = allArticles.filter(articles => articles.userId === userIdNumber)
+            // put my articles into an array of all the articles to display
+            let allArticlesToDisplay = myArticles
+            // all of my friends articles are not in a flat array, so they need this logic to push each single article object 
+            // into the array
+            myFriendsArticles.map(article => {
+                for (let i = 0; i < article.length; i++) {
+                    myArticles.push(article[i])
+                }
+            })
+            // 
+            // console.log("A single array of all the articles", allArticlesToDisplay)
+            // this renders each article to the dom
+            displayTarget.innerHTML = allArticlesToDisplay.map(article => {
                 return Article(article)
             }).join("")
         })
