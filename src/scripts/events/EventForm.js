@@ -5,7 +5,7 @@ const eventHub = document.querySelector(".container")
 
 //Renders event creation form HTML
 export const EventForm = () => {
-    const formTarget = document.querySelector(".event__form")
+    const formTarget = document.querySelector(".formArea")
 
     formTarget.innerHTML = `
     <form action="">
@@ -32,6 +32,7 @@ export const EventForm = () => {
 
 //Adds listener to eventHub to transmit custom event used for saving events
 eventHub.addEventListener("click", e => {
+    const formTarget = document.querySelector(".formArea")
     if (e.target.id === "save__event") {
 
         const date = document.getElementById("eventDate").value
@@ -48,6 +49,8 @@ eventHub.addEventListener("click", e => {
         })
 
         eventHub.dispatchEvent(saveEvent)
+        // Set the div back to empty when the save button is clicked
+        formTarget.innerHTML = ""
     }
 })
 
