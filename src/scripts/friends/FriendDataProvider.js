@@ -37,14 +37,23 @@ export const saveFriend = friend => {
         body: JSON.stringify(friend)
     })
     .then(getFriends)
+    .then(dispatchStateChangeEvent)
 }
 
-eventHub.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "add_friend")  {
-    console.log("add friend button clicked");
-    }
-})
+const dispatchStateChangeEvent = () => {
+    const friendStateChanged = new CustomEvent("friendStateChanged")
+    eventHub.dispatchEvent(friendStateChanged)
+}
 
+export const deleteFriend = (id) => {
+    return fetch(`http://localhost:8088/friends/${id}`, {
+        method: "delete"
+    })
+    // get friends again, since they have been updated
+    .then(getFriends)
+    // run this function to dispatch to friendList.js
+    .then(dispatchStateChangeEvent)    
+}
 
 // Story
 // As a user, I should be able to add other users as friends so they can view my information
@@ -59,7 +68,7 @@ eventHub.addEventListener("click", clickEvent => {
 
 // Given an active user wants to add another user to their friends list, but has no chat messages from that user
 // When the active user performs a gesture on the Add a friend affordance
-// Then the active user will be presented with an input field in which the other user's name can be entered
+// Then the active user will be presented with an input field in which the other user's name can be entered ??
 
 // Given an active user has entered in another user's name in order to add that user to their friend list
 // When the active user performs a gesture on the Save affordance
