@@ -20,6 +20,7 @@ export const Nutshell = () => {
 <section class="homePage">
     <article class="section messages">        
         <h2 id="message-header">messages</h2>
+        <div id="addFriendTarget"></div>
         <div class="messages__display">
         </div>
         <div class="messages__form"></div>
