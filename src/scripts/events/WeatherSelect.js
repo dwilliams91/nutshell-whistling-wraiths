@@ -4,10 +4,8 @@ export const defaultWeather = () => {
     getWeather(36.174465, -86.767960).then(() => {
         const htmlTarget = document.querySelector(".weatherBox")
         const nashWeather = useWeather()
-        console.log(nashWeather)
         const h4Target = document.querySelector(".h4Nashville")
         const todaysWeather = nashWeather.daily.slice(0, 1)
-        console.log(todaysWeather)
         const weatherHTML = todaysWeather.map(day => {
             const datept1 = day.dt * 1000
             const humanDate = new Date(datept1)

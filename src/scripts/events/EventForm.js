@@ -105,8 +105,6 @@ eventHub.addEventListener("click", e => {
 
 
 eventHub.addEventListener("saveEvent", e => {
-
-    if (e.id === "save__event") {
         saveEvent(e.detail)
             .then(EventList)
             .then(() => {
@@ -121,7 +119,7 @@ eventHub.addEventListener("saveEvent", e => {
                 const formTarget = document.querySelector(".event__form")
                 formTarget.innerHTML = ""
             })
-    }
+    
 })
 
 eventHub.addEventListener("updateEvent", e => {
