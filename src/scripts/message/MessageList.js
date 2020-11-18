@@ -9,9 +9,12 @@ export const messageList=()=>{
     getMessages()
     .then(getUsers)
     .then(()=>{
-        const allMessage=useMessages()
+        const allMessages=useMessages()
         const allUsers=useUsers()
-        render(allMessage,allUsers)
+        // this takes out any private messages
+        const publicMessages=allMessages.filter(singleMessage=>singleMessage.recieverId===undefined)
+        console.log(publicMessages)
+        render(publicMessages,allUsers)
     })
 }
 
