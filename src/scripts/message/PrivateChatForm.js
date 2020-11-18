@@ -1,5 +1,6 @@
 import { editMessage, saveMessages, useMessages } from "./MessageDataProvider.js"
 import { messageList } from "./MessageList.js"
+import { privateMessageList } from "./PrivateChatList.js"
 
 const eventhub = document.querySelector(".container")
 // putting message form in its own module so I can reset the entry field after the user sends the message
@@ -16,8 +17,8 @@ export const privateMessageForm = () => {
 const render = (text) => {
     const contentTarget = document.querySelector(".privateMessage__form")
     contentTarget.innerHTML = `<input type="text" placeholder="Type new post" id="privateMessage__form" value="${text.message}">
-    <button id="messages__save"> post</button>
-    <input type="hidden" name="${text.id}" id="messageId">`
+    <button id="privateMessages__save"> post</button>
+    <input type="hidden" name="${text.id}" id="privateMessageId">`
 }
 eventhub.addEventListener("keyup", function(event) {
     
@@ -35,9 +36,9 @@ eventhub.addEventListener("keyup", function(event) {
 eventhub.addEventListener("click", click => {
 
     // on click check to see if the button was clicked
-    if (click.target.id === "messages__save") {
+    if (click.target.id === "privateMessages__save") {
         // gets the name value of the hidden field on line 21
-        const HiddenId = document.querySelector("#messageId")
+        const HiddenId = document.querySelector("#privateMessageId")
         // if the hidden field is set to default run the following logic.
 
         if (HiddenId.name === "default") {
@@ -48,12 +49,13 @@ eventhub.addEventListener("click", click => {
             // create the json entry
             const newMessage = {
                 userId: user,
-                message: messageText
+                message: messageText,
+                recieverId: parseInt(selectedReceiever)
             }
             // send it to the json then refresh the list so it displays the new message and the form so it clears the entry
             saveMessages(newMessage)
-                .then(messageList)
-                .then(messageForm)
+                .then(privateMessageList)
+                .then(privateMessageForm)
         }
         // if the hidden field is not default, then the user is editing a message. so it recreates the message object and sends it to the editMessage 
         else {
