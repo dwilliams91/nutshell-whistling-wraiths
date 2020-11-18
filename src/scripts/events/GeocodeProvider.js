@@ -11,13 +11,4 @@ export const getGeocode =(city, statecode)=>{
     })
 }
 export const useGeocode = () => location.slice()
-const render = (location) =>{
-    console.log("lat: ", location[0].point.lat, "lon: ", location[0].point.lng )
-}
-export const cityCoords = (city, stateCode) =>{
-    getGeocode(city, stateCode).then(() => {
-        const location = useGeocode()
-        render(location)
-        console.log(location)
-    })
-}
+

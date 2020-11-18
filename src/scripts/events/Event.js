@@ -6,6 +6,7 @@ export const Event = (eventObj) => {
         <p class-"event__location">${eventObj.location}</p>
         <button id="deleteEvent__${eventObj.id}">Delete</button>
         <button id="editEvent__${eventObj.id}">Edit</button>
+        <button id="showWeather__${eventObj.id}">Show Weather</button>
     </div>
     `
 }
@@ -18,6 +19,7 @@ export const FirstEvent = (eventObj) => {
         <p class-"event__location">${eventObj.location}</p>
         <button id="deleteEvent__${eventObj.id}">Delete</button>
         <button id="editEvent__${eventObj.id}">Edit</button>
+        <button id="showWeather__${eventObj.id}">Show Weather</button>
     </div>
     `
 }
@@ -29,6 +31,7 @@ export const FriendEvent = (eventObj, user) => {
         <p class="associated__friend">Event posted by: ${user.username}</p>
         <p class="event__date">${eventObj.date}</p>
         <p class="event__location">${eventObj.location}</p>
+        <button id="showWeather__${eventObj.id}">Show Weather</button>
     </div>
     `
 }
