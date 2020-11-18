@@ -14,7 +14,7 @@ export const taskHtml = (taskObj) => {
     `
 }
 
-// If the edit task button is clicked, dispatch this event and include the task objects id in the detail
+// If the edit task button is clicked, dispatch this event and include the task objects id in the detail. Dispatched to taskList.js
 eventHub.addEventListener("click", event => {
     if (event.target.id.startsWith("editTask")) {
         const [prefix, id] = event.target.id.split("--")
