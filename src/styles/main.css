@@ -2,7 +2,6 @@
     display:flex;
     justify-content: space-evenly;
     flex-wrap:wrap;
-    background-color: black;
 }
 .section{
     flex-basis: 19%;
@@ -28,7 +27,7 @@ h1{
 }
 
 .section {
-    height: 350px;
+    min-height: 350px;
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -55,3 +54,58 @@ h1{
     font-weight: bold;
 }
 
+/* crasy black/white/red styling below */
+
+.homePage {
+    height: 66vh;
+    background-color: black;
+}
+
+h2 {
+    background-color: white;
+    position: sticky;
+    top: 1rem;
+    height: 2em;
+    vertical-align: middle;
+}
+
+.messages,
+.events, 
+.tasks,
+.articles,
+.friends {
+    height: 100%;
+}
+
+.messages__display {
+    color: white;
+    background-color: black;
+    border: 1px solid red;
+    padding: .25em;
+}
+
+.events__display,
+.tasks__display,
+.articles__display,
+.friend__input,
+.friends__display {
+    color: white;
+    background-color: black;
+    border: 1px solid red;
+    padding: .25em;
+    height: auto;
+}
+
+.friendStyle {
+    font-style: italic;
+    background-color: cornsilk;
+    color: black;
+    padding: .25em
+}
+
+.container {
+    font-family: 'Courier New', Courier, monospace;
+}
+.section {
+    background-color: black;
+}
