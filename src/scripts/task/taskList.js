@@ -1,6 +1,7 @@
 // This module is responsible for rendering task information to the DOM
 import { getUsers, useUsers } from "../user/UserDataProvider.js"
 import { taskHtml } from "./task.js"
+import { editTaskForm } from "./taskForm.js"
 import {getTasks, updateTask, useTasks} from "./TaskProvider.js"
 
 const eventHub = document.querySelector(".container")
@@ -49,4 +50,23 @@ eventHub.addEventListener("taskCompleted", event => {
         complete: true
     }
     updateTask(completedTask)
+})
+
+// Broadcast from task.js
+eventHub.addEventListener("taskEdit", event => {
+        const task = taskArr.find(task => task.id === event.detail.id)
+        editTaskForm(task)
+})
+
+// Broadcast from taskForm.js
+eventHub.addEventListener("taskEdited", event => {
+    const task = taskArr.find(task => task.id === event.detail.id)
+    const editedTask = {
+        id: task.id,
+        completionDate: event.detail.editedTask.completionDate,
+        userId: event.detail.editedTask.userId,
+        task: event.detail.editedTask.task,
+        complete: false
+    }
+    updateTask(editedTask)
 })
