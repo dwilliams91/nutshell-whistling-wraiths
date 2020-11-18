@@ -14,7 +14,7 @@ export const Article = (articleObj,userObj) => {
     }
     else{
         return `
-        <div class = "article" id = "${articleObj.id}">
+        <div class = "article friendStyle" id = "${articleObj.id}">
             
             <h4>${articleObj.title}</h4>
             <p>posted by: ${userObj.username}</p>

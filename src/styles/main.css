@@ -43,3 +43,13 @@ h1{
     overflow: hidden
 }
 
+.friendStyle {
+    font-style: italic;
+    background-color: cornsilk;
+}
+
+.first__event {
+    background-color: blanchedalmond;
+    font-size: large;
+    font-weight: bold;
+}
