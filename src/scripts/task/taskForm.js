@@ -30,7 +30,7 @@ export const editTaskForm = (taskObj) => {
 // This was dispatched from Nutshell.js
 eventHub.addEventListener("createTask", taskForm)
 
-// When someone clicks save edit button, pass along the new values
+// When someone clicks save edit button, pass along the new values. Dispatched to taskList.js
 eventHub.addEventListener("click", event => {
     contentContainer = document.querySelector(".formArea")
     if (event.target.id.startsWith("saveEdit")) {
