@@ -54,7 +54,7 @@ h1{
     font-weight: bold;
 }
 
-/* crasy black/white/red styling below */
+/* JFF black/white/red styling below */
 
 .homePage {
     height: 66vh;
@@ -103,9 +103,13 @@ h2 {
     padding: .25em
 }
 
+.first__event {
+    color: black
+}
+
 .container {
     font-family: 'Courier New', Courier, monospace;
 }
-.section {
+section {
     background-color: black;
 }
