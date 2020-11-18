@@ -23,7 +23,7 @@ const render = (text) => {
 eventhub.addEventListener("keyup", function(event) {
     
     if (event.keyCode === 13) {
-    const checkingInput=document.querySelector("#messages__form").value
+    const checkingInput=document.querySelector("#privateMessage__form").value
     if (checkingInput!==""){
      event.preventDefault();
      document.getElementById("messages__save").click();
@@ -66,13 +66,14 @@ eventhub.addEventListener("click", click => {
             const editedMessage = {
                 userId: user,
                 message: messageText,
+                recieverId:parseInt(selectedReceiever),
                 id:HiddenId.name
             }
             // send it to the json then refresh the list so it displays the new message and the form so it clears the entry
             console.log(editedMessage)
             editMessage(editedMessage)
-                .then(messageList)
-                .then(messageForm)
+                .then(privateMessageList)
+                .then(privateMessageForm)
 
         }
         
@@ -95,7 +96,6 @@ eventhub.addEventListener("editMessage", e => {
 let selectedReceiever=0
 export const dispatchPrivateMessage=()=>{
 eventhub.addEventListener("privateChatStarted",e=>{
-    console.log("you licked me")
     privateMessageForm()
     selectedReceiever=e.detail.recieverId
 })

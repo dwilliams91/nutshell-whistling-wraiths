@@ -21,9 +21,12 @@ export const privateMessageList=()=>{
 
         // go through all the messages. Take each message. See if either the recieverId is the same as the receiver from the click event or the the user
         const bothMessages=allMessages.reverse().filter(singleMessage=>{
-            if (singleMessage.recieverId===parseInt(selectedReceiever)){
+            // this checks to see if the recieverId matches the correct reciever
+            if (singleMessage.recieverId===parseInt(selectedReceiever) && singleMessage.userId===user){
                 return singleMessage
-            } else if (singleMessage.recieverId===user){
+            } 
+            // this checks to see if the reciever id matches the user
+            else if (singleMessage.recieverId===user && singleMessage.userId===parseInt(selectedReceiever)){
                 return singleMessage
             }
 
