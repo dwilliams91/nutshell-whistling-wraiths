@@ -1,3 +1,4 @@
+@import "message.css";
 .homePage{
     display:flex;
     justify-content: space-evenly;
@@ -27,7 +28,7 @@ h1{
 }
 
 .section {
-    height: 350px;
+    height: 450px;
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -52,4 +53,22 @@ h1{
     background-color: blanchedalmond;
     font-size: large;
     font-weight: bold;
+}
+.article {
+    border:1px solid black;
+    margin: 2px
+}
+.myMessages{
+    text-align: right;
+    background-color: #1982FC;
+    color:white;
+}
+.otherMessages{
+    background-color: #EEE;
+}
+.displayButtons {
+    display:none;
+}
+strong{
+    color: black;
 }
