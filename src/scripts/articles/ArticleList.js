@@ -71,10 +71,12 @@ eventHub.addEventListener("click", e => {
     }
 })
 // re-renders when you add a friend
-eventHub.addEventListener("saveFriend", e => {
+eventHub.addEventListener("friendSaved", e => {
     ArticleList()
 })
 // 
 eventHub.addEventListener("friendDeleted",e=>{
     ArticleList()
 })
+
+

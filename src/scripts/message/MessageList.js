@@ -2,7 +2,7 @@ import { deleteMessage, getMessages, useMessages } from "./MessageDataProvider.j
 import {messageHTMLCreator} from "./Message.js"
 import { getUsers, useUsers } from "../user/UserDataProvider.js"
 
-const eventhub=document.querySelector(".container")
+const eventHub=document.querySelector(".container")
 
 // get the messages, and gets the users, then put them into the render function
 export const messageList=()=>{
@@ -32,7 +32,7 @@ const render=(messages,users)=>{
     contentTarget.innerHTML=messagesHTML
 }
 // listen for a click
-eventhub.addEventListener("click", click=>{
+eventHub.addEventListener("click", click=>{
     // checks to see if the click happened on a delete button
     if (click.target.id.startsWith("messageDelete--")){
         // splits the delete into two parts to get just the id
@@ -46,7 +46,7 @@ eventhub.addEventListener("click", click=>{
     }
 
 })
-eventhub.addEventListener("click", click=>{
+eventHub.addEventListener("click", click=>{
     // checks to see if the click happened on a edit button
     if (click.target.id.startsWith("messageEdit--")){
         // splits the edit into two parts to get just the id
@@ -57,8 +57,10 @@ eventhub.addEventListener("click", click=>{
                 messageId: id
             }
         })
-        eventhub.dispatchEvent(editMessageEvent)
+        eventHub.dispatchEvent(editMessageEvent)
         
     }
 
 })
+
+eventHub.addEventListener("friendStateChanged", messageList)
