@@ -93,12 +93,16 @@ h2 {
 .tasks__display,
 .articles__display,
 .friend__input,
-.friends__display {
+.friends__display,
+.task__form {
     color: white;
     background-color: black;
     border: 1px solid red;
     padding: .25em;
     height: auto;
+}
+label {
+    color: white;
 }
 
 .friendStyle {
