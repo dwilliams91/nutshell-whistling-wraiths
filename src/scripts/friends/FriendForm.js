@@ -2,6 +2,7 @@ import { saveFriend, deleteFriend } from "./FriendDataProvider.js"
 import { FriendList } from "./FriendList.js"
 import { messageList } from "../message/MessageList.js"
 import { Nutshell } from "../Nutshell.js"
+import { privateMessageList } from "../message/PrivateChatList.js"
 
 const eventHub = document.querySelector(".container")
 
@@ -103,6 +104,20 @@ eventHub.addEventListener("click", e => {
         }
     })
     eventHub.dispatchEvent(friendDeleted)
+    }
+})
+// send out an event listener to privateChatList
+eventHub.addEventListener("click",click=>{
+    if(click.target.id.startsWith("chatFriendshipId--")){
+        const [prefix, id]= click.target.id.split("--")
+        const privateChat= new CustomEvent("privateChatStarted",{
+            detail:{
+                recieverId:id
+            }
+        })
+        // console.log(privateChat)
+        eventHub.dispatchEvent(privateChat)
+
     }
 })
 
