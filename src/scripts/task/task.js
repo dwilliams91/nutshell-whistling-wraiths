@@ -20,7 +20,7 @@ eventHub.addEventListener("click", event => {
         const [prefix, id] = event.target.id.split("--")
         const editTask = new CustomEvent("taskEdit", {
             detail: {
-                id
+                id: parseInt(id)
             }
         })
         eventHub.dispatchEvent(editTask)
