@@ -6,6 +6,7 @@ import { getMessages, useMessages } from "./message/MessageDataProvider.js"
 import { messageForm } from "./message/MessageForm.js"
 import { messageList } from "./message/MessageList.js"
 import { FriendList } from "./friends/FriendList.js"
+import { defaultWeather } from "./events/WeatherSelect.js"
 
 const contentTarget = document.querySelector(".dashboard")
 const eventHub = document.querySelector(".container")
@@ -50,7 +51,9 @@ export const Nutshell = () => {
     <article class="section friends">
         <h2>friends</h2>
     </article>
-
+    <section class="weatherBox">
+        <div class="h4Nashville"></div>
+    </section>
 </section>`
 taskList()
 messageList()
@@ -58,6 +61,7 @@ ArticleList()
 messageForm()
 EventList()
 FriendList()
+defaultWeather()
 
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)

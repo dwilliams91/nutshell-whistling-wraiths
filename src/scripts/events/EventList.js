@@ -119,3 +119,5 @@ eventHub.addEventListener("friendDeleted",e=>{
     console.log("I'm reached")
     EventList()
 })
+
+eventHub.addEventListener()

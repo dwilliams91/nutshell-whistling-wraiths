@@ -1,5 +1,6 @@
 import { editEvent, saveEvent } from "./EventDataProvider.js"
 import { EventList } from "./EventList.js"
+import { getGeocode, useGeocode } from "./GeocodeProvider.js"
 
 const eventHub = document.querySelector(".container")
 
@@ -23,7 +24,7 @@ export const EventForm = () => {
 <form action="">
     <fieldset>
         <label for="eventLocation">Location</label>
-            <input type="text" name="eventLocation" id="eventLocation">
+            <input type="text" name="eventLocation" value="Nashville, TN (Use this format for weather!)" id="eventLocation">
     </fieldset>
 </form>
 <button id="save__event">Save event</button>
@@ -49,7 +50,7 @@ export const EventUpdateForm = (relatedEvent) => {
 <form action="">
     <fieldset>
         <label for="eventLocation">Location</label>
-            <input type="text" name="eventLocation" id="eventLocation">
+            <input type="text" name="eventLocation" value="Nashville, TN (Use this format for weather!)" id="eventLocation">
     </fieldset>
 </form>
 <button id="update__${relatedEvent}">update event</button>
@@ -102,24 +103,49 @@ eventHub.addEventListener("click", e => {
 
 })
 
+
 eventHub.addEventListener("saveEvent", e => {
-    
+
     if (e.id === "save__event") {
         saveEvent(e.detail)
             .then(EventList)
             .then(() => {
+
+                const weatherUpdate = new CustomEvent("updateWeather", {
+                    detail: {
+                        locationString: document.querySelector("#eventLocation").value
+                    }
+                })
+                eventHub.dispatchEvent(weatherUpdate)
+
                 const formTarget = document.querySelector(".event__form")
                 formTarget.innerHTML = ""
-
             })
-    } 
+    }
 })
 
 eventHub.addEventListener("updateEvent", e => {
     editEvent(e.detail.eventId, e.detail)
-    .then(EventList)
-    .then(() => {
-        const formTarget = document.querySelector(".event__form")
-                formTarget.innerHTML = ""
+        .then(EventList)
+        .then(() => {
+
+            const weatherUpdate = new CustomEvent("updateWeather", {
+                detail: {
+                    locationString: document.querySelector("#eventLocation").value
+                }
+            })
+            eventHub.dispatchEvent(weatherUpdate)
+
+            const formTarget = document.querySelector(".event__form")
+            formTarget.innerHTML = ""
+        })
+})
+
+eventHub.addEventListener("updateWeather", e => {
+    const locationArray = e.detail.locationString.split(", ")
+    getGeocode(locationArray[0], locationArray[1])
+    .then( () => {
+        const coordinates = useGeocode()
+        console.log(coordinates)
     })
 })
