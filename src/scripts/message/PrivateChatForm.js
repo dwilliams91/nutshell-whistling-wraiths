@@ -2,7 +2,7 @@ import { editMessage, saveMessages, useMessages } from "./MessageDataProvider.js
 import { messageList } from "./MessageList.js"
 import { privateMessageList } from "./PrivateChatList.js"
 
-const eventhub = document.querySelector(".container")
+const eventHub = document.querySelector(".container")
 // putting message form in its own module so I can reset the entry field after the user sends the message
 export const privateMessageForm = () => {
     // render takes in an parameter. This parameter changes if a user wants to edit the message. 
@@ -20,20 +20,20 @@ const render = (text) => {
     <button id="privateMessages__save"> post</button>
     <input type="hidden" name="${text.id}" id="privateMessageId">`
 }
-eventhub.addEventListener("keyup", function(event) {
+eventHub.addEventListener("keyup", function(event) {
     
     if (event.keyCode === 13) {
     const checkingInput=document.querySelector("#privateMessage__form").value
     if (checkingInput!==""){
      event.preventDefault();
-     document.getElementById("messages__save").click();
+     document.getElementById("privateMessages__save").click();
     }
     }
   });
 
 
 
-eventhub.addEventListener("click", click => {
+  eventHub.addEventListener("click", click => {
 
     // on click check to see if the button was clicked
     if (click.target.id === "privateMessages__save") {
@@ -81,7 +81,7 @@ eventhub.addEventListener("click", click => {
 
 })
 // this listens for the edit button
-eventhub.addEventListener("editMessage", e => {
+eventHub.addEventListener("privateEditMessage", e => {
     // this takes in the id of the message dispatched in the custom event in message list and finds the entry they want to edit
     const messageId = parseInt(e.detail.messageId)
     const allMessage = useMessages()
@@ -95,7 +95,7 @@ eventhub.addEventListener("editMessage", e => {
 
 let selectedReceiever=0
 export const dispatchPrivateMessage=()=>{
-eventhub.addEventListener("privateChatStarted",e=>{
+    eventHub.addEventListener("privateChatStarted",e=>{
     privateMessageForm()
     selectedReceiever=e.detail.recieverId
 })

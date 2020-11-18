@@ -64,3 +64,12 @@ const render = () => {
 
 eventHub.addEventListener("userAuthenticated", FriendList);
 eventHub.addEventListener("friendStateChanged", FriendList)
+
+eventHub.addEventListener("RerenderFriends",e=>{
+    const contentTarget=document.querySelector(".privateMessage")
+    contentTarget.innerHTML=`<article class="section friends">
+    <h2>friends</h2>
+</article>`
+FriendList()
+
+})

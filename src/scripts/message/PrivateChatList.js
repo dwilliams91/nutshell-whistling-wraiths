@@ -1,6 +1,8 @@
 import { getUsers, useUsers } from "../user/UserDataProvider.js"
-import { getMessages, editMessage, saveMessages, useMessages } from "./MessageDataProvider.js"
+import { getMessages, editMessage, saveMessages, useMessages, deleteMessage } from "./MessageDataProvider.js"
 import {messageHTMLCreator} from "./Message.js"
+import { privateMessageHTMLCreator } from "./PrivateChat.js"
+import { privateMessageForm } from "./PrivateChatForm.js"
 
 const eventHub=document.querySelector(".container")
 
@@ -11,6 +13,14 @@ eventHub.addEventListener("privateChatStarted",e=>{
 })
 
 export const privateMessageList=()=>{
+    const contentTarget=document.querySelector(".friends")
+    contentTarget.innerHTML=`<article class="section privateMessage">
+    <h2>Private Chat</h2>
+    <div class="privateMessage__display"></div>
+    <div class="privateMessage__form"></div>
+    <button id="backToFriends"> Back to Friends </button>
+    </article>`
+
     const user=parseInt(sessionStorage.getItem("activeUser"))
     getMessages()
     .then(getUsers)
@@ -45,8 +55,47 @@ const render=(messages,users)=>{
         // for each message, find the matching user
         const relatedUser=users.find(user=>user.id===individualMessage.userId)
         // put the matching user and the message into the html creator in the message.js module
-        return messageHTMLCreator(individualMessage,relatedUser)
+        return privateMessageHTMLCreator(individualMessage,relatedUser)
     }).join('')
     // puts everything in the target
     contentTarget.innerHTML=messagesHTML
 }
+// Friends list listens for this
+eventHub.addEventListener("click",click=>{
+    if (click.target.id==="backToFriends"){
+        const RerenderFriends=new CustomEvent("RerenderFriends")
+        eventHub.dispatchEvent(RerenderFriends)
+    }
+
+})
+
+eventHub.addEventListener("click", click=>{
+    // checks to see if the click happened on a delete button
+    if (click.target.id.startsWith("privateMessageDelete--")){
+        // splits the delete into two parts to get just the id
+        const [prefix,id]=click.target.id.split("--")
+        // sends that id to the delete function and then calls message list to rerender to the dom
+        deleteMessage(id)
+        .then(()=>{
+            privateMessageList()
+            privateMessageForm()
+        })
+        
+    }
+})
+eventHub.addEventListener("click", click=>{
+    // checks to see if the click happened on a edit button
+    if (click.target.id.startsWith("privateMessageEdit--")){
+        // splits the edit into two parts to get just the id
+        const [prefix,id]=click.target.id.split("--")
+        // creates a custom event that dispatches the id  of the message you want to edit. Listens for it in MessageForm around line 62
+        const privateEditMessageEvent= new CustomEvent("privateEditMessage", {
+            detail:{
+                messageId: id
+            }
+        })
+        eventHub.dispatchEvent(privateEditMessageEvent)  
+    }
+})
+
+
