@@ -137,7 +137,8 @@ eventHub.addEventListener("click", e=> {
 
         const weatherUpdate = new CustomEvent("updateWeather", {
             detail: {
-                location: currentEvent.location
+                location: currentEvent.location,
+                date: currentEvent.date
             }
         })
         eventHub.dispatchEvent(weatherUpdate)
@@ -146,15 +147,16 @@ eventHub.addEventListener("click", e=> {
 
 eventHub.addEventListener("updateWeather", e => {
     const locationArray = e.detail.location.split(", ")
+    const date = e.detail.date
     getGeocode(locationArray[0], locationArray[1])
     .then( () => {
         const coordinates = useGeocode()[0]
 
         console.log(coordinates)
-        const cityName = coordinates.name
+        const cityName = coordinates.city
         console.log(cityName)
         const lat = coordinates.point.lat
         const long = coordinates.point.lng
-        weatherMaker(lat, long, cityName)
+        weatherMaker(lat, long, cityName, date)
     })
 })

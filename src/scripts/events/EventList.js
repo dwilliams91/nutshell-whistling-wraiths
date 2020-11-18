@@ -104,7 +104,7 @@ eventHub.addEventListener("click", e => {
         EventForm()
     }
 
-    if (e.target.id.startsWith("edit")) {
+    if (e.target.id.startsWith("editEvent")) {
         const updateId = e.target.id.split("__")
         EventUpdateForm(updateId[1])
     }
