@@ -2,7 +2,7 @@ import { getFriends, useFriends } from "../friends/FriendDataProvider.js"
 import { getUsers, useUsers } from "../user/UserDataProvider.js"
 import { Event, FirstEvent, FriendEvent } from "./Event.js"
 import { deleteEvent, getEvents, useEvents } from "./EventDataProvider.js"
-import { EventForm } from "./EventForm.js"
+import { EventForm, EventUpdateForm } from "./EventForm.js"
 
 const eventHub = document.querySelector(".container")
 
@@ -102,6 +102,11 @@ eventHub.addEventListener("click", e => {
 eventHub.addEventListener("click", e => {
     if (e.target.id === "event__save") {
         EventForm()
+    }
+
+    if (e.target.id.startsWith("editEvent")) {
+        const updateId = e.target.id.split("__")
+        EventUpdateForm(updateId[1])
     }
 })
 

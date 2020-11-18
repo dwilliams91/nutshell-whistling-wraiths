@@ -6,6 +6,7 @@ import { getMessages, useMessages } from "./message/MessageDataProvider.js"
 import { messageForm } from "./message/MessageForm.js"
 import { messageList } from "./message/MessageList.js"
 import { FriendList } from "./friends/FriendList.js"
+import { defaultWeather } from "./events/WeatherSelect.js"
 import { privateMessageList } from "./message/PrivateChatList.js"
 import { dispatchPrivateMessage } from "./message/PrivateChatForm.js"
 
@@ -53,8 +54,9 @@ export const Nutshell = () => {
     <article class="section friends">
         <h2>friends</h2>
     </article>
-
-
+    <section class="weatherBox">
+        <div class="h4Nashville"></div>
+    </section>
 </section>`
 taskList()
 messageList()
@@ -62,6 +64,8 @@ ArticleList()
 messageForm()
 EventList()
 FriendList()
+defaultWeather()
+
 dispatchPrivateMessage()
 }
 eventHub.addEventListener("userAuthenticated", Nutshell)
