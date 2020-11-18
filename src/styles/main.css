@@ -59,6 +59,7 @@ h1{
 .homePage {
     height: 66vh;
     background-color: black;
+    display: flex;
 }
 
 h2 {
@@ -112,4 +113,15 @@ h2 {
 }
 section {
     background-color: black;
+}
+
+.weatherBox {
+    color: white;
+    background-color: black;
+    border: 1px solid red;
+    padding: .25em;
+    height: auto;
+    top: .1rem;
+    position: fixed;
+    margin-left: 32.5em;
 }
