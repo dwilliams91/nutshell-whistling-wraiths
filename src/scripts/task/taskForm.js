@@ -46,7 +46,7 @@ eventHub.addEventListener("click", event => {
                     userId,
                     task,
                     completionDate,
-                    complete: false
+                    complete
                 }
             }
         })
