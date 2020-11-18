@@ -1,3 +1,4 @@
+@import "message.css";
 .homePage{
     display:flex;
     justify-content: space-evenly;
@@ -28,6 +29,8 @@ h1{
 
 .section {
     min-height: 350px;
+/* david had fixed height */
+    /* height: 450px; */
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -79,12 +82,13 @@ h2 {
 }
 
 .messages__display {
-    color: white;
-    background-color: black;
+    /* color: white; */
+    background-color: white;
     border: 1px solid red;
     padding: .25em;
 }
 
+#addFriendTarget,
 .events__display,
 .tasks__display,
 .articles__display,
@@ -124,4 +128,25 @@ section {
     top: .1rem;
     position: fixed;
     margin-left: 32.5em;
+    flex-wrap: wrap;
+}
+
+/* david's styling */
+.article {
+    border:1px solid black;
+    margin: 2px
+}
+.myMessages{
+    text-align: right;
+    background-color: #1982FC;
+    color:white;
+}
+.otherMessages{
+    background-color: #EEE;
+}
+.displayButtons {
+    display:none;
+}
+strong{
+    color: black;
 }
