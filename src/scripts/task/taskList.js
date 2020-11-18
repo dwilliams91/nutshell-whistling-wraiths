@@ -58,6 +58,7 @@ eventHub.addEventListener("taskEdit", event => {
         editTaskForm(task)
 })
 
+// Broadcast from taskForm.js
 eventHub.addEventListener("taskEdited", event => {
     const task = taskArr.find(task => task.id === event.detail.id)
     const editedTask = {

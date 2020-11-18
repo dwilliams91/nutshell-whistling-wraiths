@@ -22,7 +22,7 @@ export const editTaskForm = (taskObj) => {
         <input type="text" id="editedTask--name" value="${taskObj.task}" />
         <label for="form--editedCompletionDate">Expected completion date</label>
         <input type="date" id="task--editedCompletionDate" value="${taskObj.completionDate}"/>
-        <button id="saveEdit--${taskObj.id}">Edit Task</button>
+        <button id="saveEdit--${taskObj.id}">Save edit</button>
     </section>
     `
 }
@@ -30,6 +30,7 @@ export const editTaskForm = (taskObj) => {
 // This was dispatched from Nutshell.js
 eventHub.addEventListener("createTask", taskForm)
 
+// When someone clicks save edit button, pass along the new values
 eventHub.addEventListener("click", event => {
     if (event.target.id.startsWith("saveEdit")) {
         const [prefix, id] = event.target.id.split("--")
