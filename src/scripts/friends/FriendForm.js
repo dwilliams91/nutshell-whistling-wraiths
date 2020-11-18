@@ -33,14 +33,14 @@ eventHub.addEventListener("click", e => {
     if (e.target.id.startsWith("addFriend--")) {
         const [prefix, id, friendName] = e.target.id.split("--")
 
-        const friendFromMessage = new CustomEvent ("addFriendFromMessagePrompt", {
+        const friendDataFromMessage = new CustomEvent ("addFriendPrompt", {
             detail: {
                 friendName,
                 userId: id
             }
         })
-        console.log("add friend from Message clicked", friendFromMessage)
-    eventHub.dispatchEvent(friendFromMessage)
+        console.log("add friend from Message clicked", friendDataFromMessage.detail)
+        eventHub.dispatchEvent(friendDataFromMessage)
     }
 })
 
@@ -54,22 +54,29 @@ const addFriendPrompt = (friendName, friendUserId) => {
 }
 
 // now we listen for a name to be clicked on and give the user a prompt by invoking addFriendPrompt
-eventHub.addEventListener("addFriendFromMessagePrompt", e => {
-    console.log("add logic here")
+eventHub.addEventListener("addFriendPrompt", e => {
+    console.log("add friend confirmation prompt")
     addFriendPrompt(e.detail.friendName, e.detail.userId)
 })
 
 
 // now we listen for that Yes button to be clicked, or perhaps there's a No
-// button option as well
+// button option as well. Both buttons render the Target back to "", but Yes is listened for by the event listener on line 32
 eventHub.addEventListener("click", e => {
     let contentTarget = document.querySelector("#addFriendTarget");
     
     if (e.target.id.startsWith("yesAdd--")) {
     const [prefix, uniqueId] = e.target.id.split("--")
-    saveFriend({following: parseInt(uniqueId), userId: parseInt(sessionStorage.activeUser)})
+    // saveFriend({following: parseInt(uniqueId), userId: parseInt(sessionStorage.activeUser)})
         contentTarget.innerHTML = ""
-        eventHub.dispatchEvent(friendFromMessage)
+        const addFriendFromMessage = new CustomEvent ("friendSaved", {
+            detail: {
+                following: parseInt(uniqueId),
+                userId: parseInt(sessionStorage.activeUser)
+            }
+        })
+        console.log("add friend from Message confirmed", addFriendFromMessage.detail)
+        eventHub.dispatchEvent(addFriendFromMessage)
     }
     // this is the no button functionality
     else if (e.target.id === "noThanks") {
