@@ -32,6 +32,7 @@ eventHub.addEventListener("createTask", taskForm)
 
 // When someone clicks save edit button, pass along the new values
 eventHub.addEventListener("click", event => {
+    contentContainer = document.querySelector(".formArea")
     if (event.target.id.startsWith("saveEdit")) {
         const [prefix, id] = event.target.id.split("--")
         const userId = parseInt(sessionStorage.getItem("activeUser"))
@@ -50,6 +51,8 @@ eventHub.addEventListener("click", event => {
             }
         })
         eventHub.dispatchEvent(saveEdit)
+        contentContainer.innerHTML = ""
+
     }
 })
 
