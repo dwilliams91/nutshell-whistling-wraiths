@@ -1,7 +1,11 @@
 .homePage{
     display:flex;
     justify-content: space-evenly;
+<<<<<<< HEAD
     flex-wrap: wrap
+=======
+    flex-wrap:wrap;
+>>>>>>> master
 }
 .section{
     flex-basis: 19%;
