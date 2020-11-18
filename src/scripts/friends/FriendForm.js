@@ -2,7 +2,7 @@ import { saveFriend, deleteFriend } from "./FriendDataProvider.js"
 import { FriendList } from "./FriendList.js"
 import { messageList } from "../message/MessageList.js"
 import { Nutshell } from "../Nutshell.js"
-import { privateMessageList } from "../PrivateChat/PrivateChatList.js"
+import { privateMessageList } from "../message/PrivateChatList.js"
 
 const eventHub = document.querySelector(".container")
 

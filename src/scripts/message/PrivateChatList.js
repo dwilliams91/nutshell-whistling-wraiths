@@ -1,32 +1,42 @@
 import { getUsers, useUsers } from "../user/UserDataProvider.js"
-import { getMessages, editMessage, saveMessages, useMessages } from "../message/MessageDataProvider.js"
-import {messageHTMLCreator} from "../message/Message.js"
+import { getMessages, editMessage, saveMessages, useMessages } from "./MessageDataProvider.js"
+import {messageHTMLCreator} from "./Message.js"
 
 const eventHub=document.querySelector(".container")
 
-let selectedUser=0
+let selectedReceiever=0
 eventHub.addEventListener("privateChatStarted",e=>{
     privateMessageList()
-    selectedUser=e.detail.recieverId
-    console.log(selectedUser)
+    selectedReceiever=e.detail.recieverId
 })
 
 export const privateMessageList=()=>{
+    const user=parseInt(sessionStorage.getItem("activeUser"))
     getMessages()
     .then(getUsers)
     .then(()=>{
         const allMessages=useMessages()
-        const allUsers=useUsers()
+        const allUsers=useUsers()  
         
-        const privateMessages=allMessages.filter(singleMessage=>singleMessage.recieverId ===parseInt(selectedUser))
-        console.log(privateMessages)
-        render(privateMessages,allUsers)
+
+        // go through all the messages. Take each message. See if either the recieverId is the same as the receiver from the click event or the the user
+        const bothMessages=allMessages.reverse().filter(singleMessage=>{
+            if (singleMessage.recieverId===parseInt(selectedReceiever)){
+                return singleMessage
+            } else if (singleMessage.recieverId===user){
+                return singleMessage
+            }
+
+        })
+
+        
+        render(bothMessages,allUsers)
     })
 }
 
 const render=(messages,users)=>{
     // get the content target
-    const contentTarget=document.querySelector(".privateMessage")
+    const contentTarget=document.querySelector(".privateMessage__display")
 // go through all the messages. Use the reverse method so that the newest message always displays on the bottom instead of the top.
     const messagesHTML=messages.reverse().map(individualMessage=> {
         // for each message, find the matching user
