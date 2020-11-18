@@ -1,4 +1,4 @@
-@import "message.css";
+
 .homePage{
     display:flex;
     justify-content: space-evenly;
@@ -29,7 +29,9 @@ h1{
 }
 
 .section {
-    height: 450px;
+    min-height: 350px;
+/* david had fixed height */
+    /* height: 450px; */
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -55,6 +57,86 @@ h1{
     font-size: large;
     font-weight: bold;
 }
+
+/* JFF black/white/red styling below */
+
+.homePage {
+    height: 66vh;
+    background-color: black;
+    display: flex;
+}
+
+h2 {
+    background-color: white;
+    position: sticky;
+    top: 1rem;
+    height: 2em;
+    vertical-align: middle;
+}
+
+.messages,
+.events, 
+.tasks,
+.articles,
+.friends {
+    height: 100%;
+}
+
+.messages__display {
+    /* color: white; */
+    background-color: white;
+    border: 1px solid red;
+    padding: .25em;
+}
+
+#addFriendTarget,
+.events__display,
+.tasks__display,
+.articles__display,
+.friend__input,
+.friends__display,
+.task__form {
+    color: white;
+    background-color: black;
+    border: 1px solid red;
+    padding: .25em;
+    height: auto;
+}
+label {
+    color: white;
+}
+
+.friendStyle {
+    font-style: italic;
+    background-color: cornsilk;
+    color: black;
+    padding: .25em
+}
+
+.first__event {
+    color: black
+}
+
+.container {
+    font-family: 'Courier New', Courier, monospace;
+}
+section {
+    background-color: black;
+}
+
+.weatherBox {
+    color: white;
+    background-color: black;
+    border: 1px solid red;
+    padding: .25em;
+    height: auto;
+    top: .1rem;
+    position: fixed;
+    margin-left: 32.5em;
+    flex-wrap: wrap;
+}
+
+/* david's styling */
 .article {
     border:1px solid black;
     margin: 2px
