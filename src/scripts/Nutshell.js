@@ -51,6 +51,7 @@ export const Nutshell = () => {
     <article class="section friends">
         <h2>friends</h2>
     </article>
+    <article class="section privateMessage"></article>
    
 
 </section>`
