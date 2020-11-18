@@ -1,8 +1,8 @@
-import {saveTask} from "./TaskProvider.js"
+import { saveTask } from "./TaskProvider.js"
 // This module is responsible for creating and rendering the task form
 
 const eventHub = document.querySelector(".container")
-let contentContainer =""
+let contentContainer = ""
 export const taskForm = () => {
     contentContainer = document.querySelector(".formArea")
     contentContainer.innerHTML = `
@@ -15,8 +15,46 @@ export const taskForm = () => {
     `
 }
 
+export const editTaskForm = (taskObj) => {
+    contentContainer = document.querySelector(".formArea")
+    contentContainer.innerHTML = `
+    <section class="taskForm">
+        <input type="text" id="editedTask--name" value="${taskObj.task}" />
+        <label for="form--editedCompletionDate">Expected completion date</label>
+        <input type="date" id="task--editedCompletionDate" value="${taskObj.completionDate}"/>
+        <button id="saveEdit--${taskObj.id}">Save edit</button>
+    </section>
+    `
+}
+
 // This was dispatched from Nutshell.js
 eventHub.addEventListener("createTask", taskForm)
+
+// When someone clicks save edit button, pass along the new values. Dispatched to taskList.js
+eventHub.addEventListener("click", event => {
+    contentContainer = document.querySelector(".formArea")
+    if (event.target.id.startsWith("saveEdit")) {
+        const [prefix, id] = event.target.id.split("--")
+        const userId = parseInt(sessionStorage.getItem("activeUser"))
+        const task = document.querySelector("#editedTask--name").value
+        const completionDate = document.querySelector("#task--editedCompletionDate").value
+        const complete = false
+        const saveEdit = new CustomEvent("taskEdited", {
+            detail: {
+                id: parseInt(id),
+                editedTask: {
+                    userId,
+                    task,
+                    completionDate,
+                    complete: false
+                }
+            }
+        })
+        eventHub.dispatchEvent(saveEdit)
+        contentContainer.innerHTML = ""
+
+    }
+})
 
 
 eventHub.addEventListener("click", event => {

@@ -54,13 +54,6 @@ export const Nutshell = () => {
         <h2>friends</h2>
     </article>
 
-    <article class="section privateMessage">
-    <h2>Private Chat</h2>
-    <div class="privateMessage__display"></div>
-    <div class="privateMessage__form"></div>
-
-    </article>
-   
 
 </section>`
 taskList()

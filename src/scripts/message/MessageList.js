@@ -44,7 +44,6 @@ eventHub.addEventListener("click", click=>{
         })
         
     }
-
 })
 eventHub.addEventListener("click", click=>{
     // checks to see if the click happened on a edit button
@@ -60,7 +59,6 @@ eventHub.addEventListener("click", click=>{
         eventHub.dispatchEvent(editMessageEvent)
         
     }
-
 })
 
 eventHub.addEventListener("friendStateChanged", messageList)
