@@ -26,3 +26,21 @@ export const deleteArticle = articleId => {
     })
         .then(getArticles)
 }
+
+export const updateArticle = articleObj => {
+    return fetch(`http://localhost:8088/articles/${articleObj.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(articleObj)
+    })
+    .then(getArticles)
+    .then(dispatchStateChangeEvent)
+}
+
+// dispatched to ArticleList.js
+const dispatchStateChangeEvent = () => {
+    const articleStateChanged = new CustomEvent("articleStateChanged")
+    eventHub.dispatchEvent(articleStateChanged)
+}

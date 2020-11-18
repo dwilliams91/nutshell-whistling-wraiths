@@ -1,17 +1,18 @@
 import { getFriends, useFriends } from "../friends/FriendDataProvider.js"
 import { getUsers, useUsers } from "../user/UserDataProvider.js"
 import { Article } from "./Article.js"
-import { deleteArticle, getArticles, useArticles } from "./ArticleDataProvider.js"
-import { ArticleForm } from "./ArticleForm.js"
+import { deleteArticle, getArticles, useArticles, updateArticle } from "./ArticleDataProvider.js"
+import { ArticleForm, editArticleForm } from "./ArticleForm.js"
 
 const eventHub = document.querySelector(".container")
-
+let allUsers = []
+let allArticles = []
+let allfriends = []
 
 //Renders all articles to the DOM
 export const ArticleList = () => {
     const displayTarget = document.querySelector(".articles__display")
 
-    let allArticles = []
     const userIdNumber = parseInt(sessionStorage.getItem("activeUser"))
 
     getArticles()
@@ -19,11 +20,11 @@ export const ArticleList = () => {
         .then(getUsers)
         .then(() => {
             // get all the users
-            const allUsers=useUsers()
+            allUsers=useUsers()
             // get all the articles
             allArticles = useArticles()
             // get all the friends
-            const allfriends = useFriends()
+            allfriends = useFriends()
             // find just the friends of the login user
             const myfriends = allfriends.filter(friends => friends.userId === userIdNumber)
             // go through each of my friends, for each of them check to see if they have any articles
@@ -54,6 +55,9 @@ export const ArticleList = () => {
         })
 }
 
+// broadcast from ArticleDataProvider.js, after a new article has been updated, this will make articleList rerun so that the new article also renders to the DOM
+eventHub.addEventListener("articleStateChanged", ArticleList)
+
 //Adds listeners for deleting articles and displaying the adding form
 eventHub.addEventListener("click", e => {
     if (e.target.id.startsWith("deleteArticle")) {
@@ -77,6 +81,28 @@ eventHub.addEventListener("friendSaved", e => {
 // 
 eventHub.addEventListener("friendDeleted",e=>{
     ArticleList()
+})
+
+// Broadcast from Article.js
+eventHub.addEventListener("articleEdit", event => {
+        const article = allArticles.find(article => article.id === event.detail.id)
+        editArticleForm(article)
+})
+
+// Broadcast from ArticleForm.js
+eventHub.addEventListener("articleEdited", event => {
+    // debugger
+    console.log("the id is ", event.detail.id)
+    const article = allArticles.find(article => article.id === event.detail.id)
+    const editedArticle = {
+        id: article.id,
+        userId: event.detail.editedArticle.userId,
+        title: event.detail.editedArticle.title,
+        synopsis: event.detail.editedArticle.synopsis,
+        timestamp: event.detail.editedArticle.timestamp,
+        url: event.detail.editedArticle.url
+    }
+    updateArticle(editedArticle)
 })
 
 
