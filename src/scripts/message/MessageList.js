@@ -44,7 +44,6 @@ eventhub.addEventListener("click", click=>{
         })
         
     }
-
 })
 eventhub.addEventListener("click", click=>{
     // checks to see if the click happened on a edit button
@@ -57,8 +56,6 @@ eventhub.addEventListener("click", click=>{
                 messageId: id
             }
         })
-        eventhub.dispatchEvent(editMessageEvent)
-        
+        eventhub.dispatchEvent(editMessageEvent)  
     }
-
 })
