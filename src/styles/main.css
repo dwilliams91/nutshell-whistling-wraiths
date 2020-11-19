@@ -16,14 +16,38 @@ header{
     background-position: center; 
     height: 150px;
     background-attachment: fixed;
-    /* //background-position: 100% 40%; */
+    display: flex;
     text-align: left;
     color: white;
     padding: 20px 5px 100px 5px;
 }
+
+.auth {
+    display: flex;
+    background-image:  linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("https://images.unsplash.com/photo-1542850571-9769604b077d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1653&q=80");
+    background-size: cover;
+    background-position: center; 
+    height: 900px;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth--login,
+.auth--register {
+    height: 2em;
+    vertical-align: middle;
+}
+
+.login,
+.register {
+    align-items: center;
+    margin: 4px
+}
+
 h1{
     font-size: xx-large;
 }
+
 .section > h2{
     text-align: center;
 }
@@ -95,7 +119,8 @@ h2 {
 .articles__display,
 .friend__input,
 .friends__display,
-.task__form {
+.task__form,
+.tasks__complete {
     color: white;
     background-color: black;
     border: 1px solid red;
@@ -125,17 +150,18 @@ section {
 }
 
 .weatherBox {
+
+    display: flex;
     color: white;
     background-color: black;
     border: 1px solid red;
-    padding: .25em;
-    height: auto;
-    top: .1rem;
-    position: fixed;
+    padding: .5em;
+    height: fit-content;
+    top: -2rem;
+    
     margin-left: 32.5em;
     flex-wrap: wrap;
 }
-
 /* david's styling */
 .article {
     border:1px solid black;

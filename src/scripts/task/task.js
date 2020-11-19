@@ -14,6 +14,15 @@ export const taskHtml = (taskObj) => {
     `
 }
 
+export const completedTaskHtml = taskObj => {
+    return `
+    <div class="completedTask__card">
+        <h3>${taskObj.task}</h3>
+        <button id="deleteTask--${taskObj.id}">Delete task</button>
+    </div>
+    `
+}
+
 // If the edit task button is clicked, dispatch this event and include the task objects id in the detail. Dispatched to taskList.js
 eventHub.addEventListener("click", event => {
     if (event.target.id.startsWith("editTask")) {

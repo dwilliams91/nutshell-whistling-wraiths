@@ -22,22 +22,28 @@ export const messageHTMLCreator=(messageObj,userObj)=>{
 }
 
 const eventHub=document.querySelector(".container")
-
-eventHub.addEventListener("click",click=>{
-    if (click.target.id.startsWith("myMessages")){
-        let [prefix,id]=click.target.id.split("--")
+// this part below makes it so the delete and edit buttons are hidden unless you click on a message
+eventHub.addEventListener("click",event=>{
+     
+    if (event.target.id.startsWith("myMessages")){
+        let [prefix,id]=event.target.id.split("--")
         console.log(id)
         myFunction(id)    
     }
 
 })
 
+
 function myFunction(id) {
     let x = document.querySelector(`.displayButtons--${id}`);
     console.log(x.style.display)
+    if(!(x.style.display)){
+        x.style.display="none"
+    } 
     if (x.style.display === "none") {
       x.style.display = "block";
     } else {
       x.style.display = "none";
     }
   }
+

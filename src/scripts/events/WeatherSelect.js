@@ -53,7 +53,7 @@ export const weatherMaker = (lat, long, cityName, date) => {
                 dateFound = true
                 const dayForWeather = extendedForecast.find(day => {
                     const condensedDate = humanifyDateFromWeather(day)
-                 
+                
                     return dateFixer(condensedDate) === date
                 })
 

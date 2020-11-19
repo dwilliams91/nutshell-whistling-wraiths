@@ -28,9 +28,14 @@ eventHub.addEventListener("click",click=>{
 
 })
 
+
+
 function myFunction(id) {
     let x = document.querySelector(`.displayButtons--${id}`);
     console.log(x.style.display)
+    if(!(x.style.display)){
+        x.style.display="none"
+    } 
     if (x.style.display === "none") {
       x.style.display = "block";
     } else {
