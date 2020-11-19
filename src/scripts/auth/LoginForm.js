@@ -3,10 +3,6 @@
 const contentTarget = document.querySelector(".auth--login")
 const eventHub = document.querySelector(".container")
 
-eventHub.addEventListener("userAuthenticated", e => {
-    contentTarget.innerHTML = ""
-})
-
 eventHub.addEventListener("click", e => {
     if (e.target.id === "login__button") {
         const username = document.querySelector("#login__username").value
@@ -26,10 +22,12 @@ eventHub.addEventListener("click", e => {
 
 const render = () => {
     contentTarget.innerHTML += `
+    
         <section class="login">
             <input id="login__username" type="text" placeholder="Enter your username">
             <button id="login__button">Log In</button>
         </section>
+    
     `
 }
 

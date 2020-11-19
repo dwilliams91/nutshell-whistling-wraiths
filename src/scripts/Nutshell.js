@@ -12,13 +12,20 @@ import { dispatchPrivateMessage } from "./message/PrivateChatForm.js"
 
 const contentTarget = document.querySelector(".dashboard")
 const eventHub = document.querySelector(".container")
+// this querySelect is so that when nutshell runs it removes the background image rendererd for login.
+const resetBackground = document.querySelector(".auth")
+
 export const Nutshell = () => {
     
     contentTarget.innerHTML = `<header>
     <h1>Nutshell</h1>
+    <section class="weatherBox">
+    <div class="h4Nashville"></div>
+    </section>
 </header>
 <section class="formArea"></section>
-<section class="homePage">
+<section class="homePage"> 
+    
     <article class="section messages">        
         <h2 id="message-header">messages</h2>
         <div id="addFriendTarget"></div>
@@ -52,9 +59,6 @@ export const Nutshell = () => {
     <article class="section friends">
         <h2>friends</h2>
     </article>
-    <section class="weatherBox">
-        <div class="h4Nashville"></div>
-    </section>
 </section>`
 taskList()
 messageList()
@@ -65,7 +69,11 @@ FriendList()
 defaultWeather()
 
 dispatchPrivateMessage()
+
+// this removes the login background div of class "auth"
+resetBackground.remove()
 }
+
 eventHub.addEventListener("userAuthenticated", Nutshell)
 
 // This will dispatch to taskForm.js
