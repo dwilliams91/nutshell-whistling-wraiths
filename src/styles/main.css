@@ -164,13 +164,19 @@ section {
     text-align: right;
     background-color: #1982FC;
     color:white;
+    padding: 2px;
 }
 .otherMessages{
     background-color: #EEE;
+    padding:2px;
 }
 .displayButtons {
     display:none;
 }
 strong{
     color: #c49b60;
+}
+.privateMessage__display{
+    background-color: white;
+
 }
