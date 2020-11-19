@@ -32,29 +32,30 @@ export const EventForm = () => {
     `
 }
 
-export const EventUpdateForm = (relatedEvent) => {
+export const EventUpdateForm = (relatedEventId) => {
     const formTarget = document.querySelector(".formArea")
+    const relatedEvent = useEvents().find(event => event.id === parseInt(relatedEventId))
 
     formTarget.innerHTML = `
     <form action="">
     <fieldset>
         <label for="eventName">Event Name</label>
-            <input type="text" name="eventName" id="eventName">
+            <input type="text" value="${relatedEvent.name}" name="eventName" id="eventName">
     </fieldset>
 </form>
     <form action="">
     <fieldset>
         <label for="eventDate">Date</label>
-            <input type="date" name="eventDate" id="eventDate">
+            <input type="date" value="${relatedEvent.date}" name="eventDate" id="eventDate">
     </fieldset>
 </form>
 <form action="">
     <fieldset>
         <label for="eventLocation">Location</label>
-            <input type="text" name="eventLocation" text="Nashville, TN (Use this format for weather!)" id="eventLocation">
+            <input type="text" name="eventLocation" value="${relatedEvent.location}" text="Nashville, TN (Use this format for weather!)" id="eventLocation">
     </fieldset>
 </form>
-<button id="update__${relatedEvent}">update event</button>
+<button id="update__${relatedEventId}">update event</button>
     `
 }
 
@@ -100,6 +101,8 @@ eventHub.addEventListener("click", e => {
         })
 
         eventHub.dispatchEvent(updateEvent)
+
+        formTarget.innerHTML = ""
     }
 
 })
@@ -109,8 +112,7 @@ eventHub.addEventListener("saveEvent", e => {
     saveEvent(e.detail)
         .then(EventList)
         .then(() => {
-            const formTarget = document.querySelector(".event__form")
-            formTarget.innerHTML = ""
+            
         })
 
 })
@@ -121,8 +123,7 @@ eventHub.addEventListener("updateEvent", e => {
         .then(EventList)
         .then(() => {
 
-            const formTarget = document.querySelector(".event__form")
-            formTarget.innerHTML = ""
+            
         })
 })
 
