@@ -191,3 +191,7 @@ strong{
     padding-top: 50px;
     height: 100px;
 }
+
+button#logOut {
+    max-height: 1.5em;
+}   
