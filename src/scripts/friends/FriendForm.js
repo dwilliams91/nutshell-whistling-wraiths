@@ -8,9 +8,9 @@ const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", clickEvent => {
     // debugger
-    const following = parseInt(document.getElementById("friend__dropdown").value)
-
+    
     if (clickEvent.target.id === "add_friend" && following !==0)  {
+        const following = parseInt(document.getElementById("friend__dropdown").value)
 
         const friendSaved = new CustomEvent ("friendSaved", {
             detail: {
