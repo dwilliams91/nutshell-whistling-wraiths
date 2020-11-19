@@ -25,6 +25,7 @@ eventHub.addEventListener("click", clickEvent => {
 
 // when save friend button is clicked, pull the detail and pass it in to saveFriend function to post new friend object
 eventHub.addEventListener("friendSaved", e => {
+    // e.detail is the object that contains necessary data to create a new Friend
     saveFriend(e.detail)
     .then(FriendList)
 })
