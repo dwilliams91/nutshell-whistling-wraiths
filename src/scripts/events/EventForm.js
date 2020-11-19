@@ -32,29 +32,30 @@ export const EventForm = () => {
     `
 }
 
-export const EventUpdateForm = (relatedEvent) => {
+export const EventUpdateForm = (relatedEventId) => {
     const formTarget = document.querySelector(".formArea")
+    const relatedEvent = useEvents().find(event => event.id === parseInt(relatedEventId))
 
     formTarget.innerHTML = `
     <form action="">
     <fieldset>
         <label for="eventName">Event Name</label>
-            <input type="text" name="eventName" id="eventName">
+            <input type="text" value="${relatedEvent.name}" name="eventName" id="eventName">
     </fieldset>
 </form>
     <form action="">
     <fieldset>
         <label for="eventDate">Date</label>
-            <input type="date" name="eventDate" id="eventDate">
+            <input type="date" value="${relatedEvent.date}" name="eventDate" id="eventDate">
     </fieldset>
 </form>
 <form action="">
     <fieldset>
         <label for="eventLocation">Location</label>
-            <input type="text" name="eventLocation" text="Nashville, TN (Use this format for weather!)" id="eventLocation">
+            <input type="text" name="eventLocation" value="${relatedEvent.location}" text="Nashville, TN (Use this format for weather!)" id="eventLocation">
     </fieldset>
 </form>
-<button id="update__${relatedEvent}">update event</button>
+<button id="update__${relatedEventId}">update event</button>
     `
 }
 
@@ -81,11 +82,12 @@ eventHub.addEventListener("click", e => {
         formTarget.innerHTML = ""
     }
 
+    //performs similar function to above but for updating and transmits additional eventId detail
     if (e.target.id.startsWith("update__")) {
         const date = document.getElementById("eventDate").value
         const name = document.getElementById("eventName").value
         const location = document.getElementById("eventLocation").value
-       
+
         const eventId = e.target.id.split("__")[1]
 
         const updateEvent = new CustomEvent("updateEvent", {
@@ -99,35 +101,34 @@ eventHub.addEventListener("click", e => {
         })
 
         eventHub.dispatchEvent(updateEvent)
+
+        formTarget.innerHTML = ""
     }
 
 })
 
-
+//Listens for save event, saves the event, and updates the DOM.
 eventHub.addEventListener("saveEvent", e => {
-            saveEvent(e.detail)
-            .then(EventList)
-            .then(() => {
+    saveEvent(e.detail)
+        .then(EventList)
+        .then(() => {
+            
+        })
 
-                
-
-                const formTarget = document.querySelector(".event__form")
-                formTarget.innerHTML = ""
-            })
-    
 })
 
+//Listens for update event, updates it, and updates the DOM.
 eventHub.addEventListener("updateEvent", e => {
     editEvent(e.detail.eventId, e.detail)
         .then(EventList)
         .then(() => {
 
-            const formTarget = document.querySelector(".event__form")
-            formTarget.innerHTML = ""
+            
         })
 })
 
-eventHub.addEventListener("click", e=> {
+//Creats weather custom event and dispatches it to the DOM with necessary details
+eventHub.addEventListener("click", e => {
     if (e.target.id.startsWith("showWeather")) {
         console.log(e.target.id)
         const eventTargetId = parseInt(e.target.id.split("__")[1])
@@ -145,18 +146,27 @@ eventHub.addEventListener("click", e=> {
     }
 })
 
+//Uses info dispatched updateWeather event to call weatherMaker with all four parameters
 eventHub.addEventListener("updateWeather", e => {
+    //Gets City, ST formatted location and date from weather event
     const locationArray = e.detail.location.split(", ")
     const date = e.detail.date
-    getGeocode(locationArray[0], locationArray[1])
-    .then( () => {
-        const coordinates = useGeocode()[0]
 
-        console.log(coordinates)
-        const cityName = coordinates.city
-        console.log(cityName)
-        const lat = coordinates.point.lat
-        const long = coordinates.point.lng
-        weatherMaker(lat, long, cityName, date)
-    })
+    //Converts that location into geocode
+    getGeocode(locationArray[0], locationArray[1])
+        .then(() => {
+            const coordinates = useGeocode()[0]
+            console.log(coordinates)
+
+            //Uses geocode object to get city name
+            let cityName = ""
+            if (coordinates.city) {
+                cityName = coordinates.city
+            } else {
+                cityName = coordinates.name
+            }
+            const lat = coordinates.point.lat
+            const long = coordinates.point.lng
+            weatherMaker(lat, long, cityName, date)
+        })
 })
