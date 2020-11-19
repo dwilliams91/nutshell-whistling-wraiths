@@ -25,23 +25,23 @@ export const Nutshell = () => {
 <section class="homePage"> 
     
     <article class="section messages">        
-        <h2 id="message-header">messages</h2>
+        <h2 id="message-header">Messages</h2>
         <div id="addFriendTarget"></div>
         <div class="messages__display">
         </div>
         <div class="messages__form"></div>
     </article>
     <article class="section friends">
-        <h2>friends</h2>
+        <h2>Friends</h2>
     </article>
     <article class="section tasks">
-        <h2>tasks</h2>
+        <h2>Tasks</h2>
         <div class="tasks__display"></div>
         <div class="tasks__complete"></div>
         <button id="task__save"> new task</button>
     </article>
     <article class="section events">
-        <h2>events</h2>
+        <h2>Events</h2>
         <div class="events__display">
             <p>EventCards Go here</p>
         </div>
@@ -51,16 +51,16 @@ export const Nutshell = () => {
     </article>
     
     <article class="section articles">
-        <h2>article</h2>
+        <h2>Articles</h2>
         <div class="articles__display">
         </div>
         <div class="article__form">
         </div>
         <button id="article__save"> new article</button>
     </article>
-    <section class="section weatherBox">
-        <h2>Weather</h2>
-        <div class="h4Nashville"></div>
+    <section class="section">
+    <h2>Weather</h2>
+    <div class="h4Nashville weatherBox"></div>
     </section>
 </section>`
 taskList()
