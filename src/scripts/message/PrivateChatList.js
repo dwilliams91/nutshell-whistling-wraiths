@@ -16,8 +16,7 @@ eventHub.addEventListener("privateChatStarted",e=>{
 
 export const privateMessageList=()=>{
     const contentTarget=document.querySelector(".friends")
-    contentTarget.innerHTML=`<article class="section privateMessage">
-    <h2>Private Chat</h2>
+    contentTarget.innerHTML=` <h2>Private Chat</h2> <article class="section privateMessage">
     <button id="backToFriends"> Back to Friends </button>
     <div class="privateMessage__form"></div>
     <div class="privateMessage__display"></div>
