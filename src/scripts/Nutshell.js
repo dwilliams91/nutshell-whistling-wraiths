@@ -75,6 +75,7 @@ defaultWeather()
 
 dispatchPrivateMessage()
 
+// If someone clicks logout, clear the session storage then reload the current page
 eventHub.addEventListener("click", event => {
     if (event.target.id === "logOut") {
         sessionStorage.clear()
