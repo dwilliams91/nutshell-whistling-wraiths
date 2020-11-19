@@ -23,7 +23,7 @@ eventHub.addEventListener("click",click=>{
     if (click.target.id.startsWith("myPrivateMessages")){
         let [prefix,id]=click.target.id.split("--")
         console.log(id)
-        myFunction(id)    
+        myFunction(id)   
     }
 
 })
