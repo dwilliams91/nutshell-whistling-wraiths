@@ -12,6 +12,8 @@ eventHub.addEventListener("privateChatStarted",e=>{
     selectedReceiever=e.detail.recieverId
 })
 
+
+
 export const privateMessageList=()=>{
     const contentTarget=document.querySelector(".friends")
     contentTarget.innerHTML=`<article class="section privateMessage">
@@ -99,3 +101,8 @@ eventHub.addEventListener("click", click=>{
 })
 
 
+// listen for any changes to the local storage. When there is a change, rerun the privateMessageList then the PRivateMessageForm
+window.addEventListener('storage', event => {
+    getMessages().then(privateMessageList).then(privateMessageForm)
+}
+)

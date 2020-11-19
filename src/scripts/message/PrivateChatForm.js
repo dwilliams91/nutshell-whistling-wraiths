@@ -42,6 +42,7 @@ eventHub.addEventListener("keyup", function(event) {
         // if the hidden field is set to default run the following logic.
 
         if (HiddenId.name === "default") {
+             
             // if it was the button, take the text in the form and put it in the variable messages
             const messageText = document.querySelector("#privateMessage__form").value
             // find the active user who is sending this message
@@ -51,7 +52,10 @@ eventHub.addEventListener("keyup", function(event) {
                 userId: user,
                 message: messageText,
                 recieverId: parseInt(selectedReceiever)
+                
             }
+            // everytime a new private message is generated, create a new item in the local storage. There is an event listener in PrivateChatList.js that will react to this.
+            localStorage.setItem("newMessage", newMessage.message)
             // send it to the json then refresh the list so it displays the new message and the form so it clears the entry
             saveMessages(newMessage)
                 .then(privateMessageList)
