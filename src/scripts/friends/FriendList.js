@@ -62,6 +62,7 @@ const render = () => {
         `
 }
 
+// is bellow function call redundant?
 eventHub.addEventListener("userAuthenticated", FriendList);
 eventHub.addEventListener("friendStateChanged", FriendList)
 
