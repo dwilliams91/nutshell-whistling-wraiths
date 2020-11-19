@@ -182,7 +182,7 @@ strong{
     background-color: white;
 
 }
-.login, .register{
+.auth--login, .auth--register{
     padding-top: 50px;
     height: 100px;
 }
