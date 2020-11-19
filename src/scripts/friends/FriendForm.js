@@ -5,12 +5,12 @@ import { Nutshell } from "../Nutshell.js"
 import { privateMessageList } from "../message/PrivateChatList.js"
 
 const eventHub = document.querySelector(".container")
-
 eventHub.addEventListener("click", clickEvent => {
     // debugger
-    
-    if (clickEvent.target.id === "add_friend" && following !==0)  {
-        const following = parseInt(document.getElementById("friend__dropdown").value)
+    const  followingvariable = document.getElementById("friend__dropdown")
+
+    if (clickEvent.target.id === "add_friend" && followingvariable && parseInt(followingvariable.value) !==0)  {
+        const  following = parseInt(followingvariable.value)
 
         const friendSaved = new CustomEvent ("friendSaved", {
             detail: {
