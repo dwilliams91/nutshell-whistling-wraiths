@@ -19,9 +19,7 @@ export const Nutshell = () => {
     
     contentTarget.innerHTML = `<header>
     <h1>Nutshell</h1>
-    <section class="weatherBox">
-    <div class="h4Nashville"></div>
-    </section>
+    
 </header>
 <section class="formArea"></section>
 <section class="homePage"> 
@@ -33,6 +31,15 @@ export const Nutshell = () => {
         </div>
         <div class="messages__form"></div>
     </article>
+    <article class="section friends">
+        <h2>friends</h2>
+    </article>
+    <article class="section tasks">
+        <h2>tasks</h2>
+        <div class="tasks__display"></div>
+        <div class="tasks__complete"></div>
+        <button id="task__save"> new task</button>
+    </article>
     <article class="section events">
         <h2>events</h2>
         <div class="events__display">
@@ -42,12 +49,7 @@ export const Nutshell = () => {
         </div>
         <button id="event__save"> new event</button>
     </article>
-    <article class="section tasks">
-        <h2>tasks</h2>
-        <div class="tasks__display"></div>
-        <div class="tasks__complete"></div>
-        <button id="task__save"> new task</button>
-    </article>
+    
     <article class="section articles">
         <h2>article</h2>
         <div class="articles__display">
@@ -56,9 +58,10 @@ export const Nutshell = () => {
         </div>
         <button id="article__save"> new article</button>
     </article>
-    <article class="section friends">
-        <h2>friends</h2>
-    </article>
+    <section class="section weatherBox">
+        <h2>Weather</h2>
+        <div class="h4Nashville"></div>
+    </section>
 </section>`
 taskList()
 messageList()
