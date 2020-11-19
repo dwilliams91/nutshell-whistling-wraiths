@@ -2,9 +2,10 @@
 
 const contentTarget = document.querySelector(".auth--login")
 const eventHub = document.querySelector(".container")
+const resetBackground = document.querySelector(".auth")
 
 eventHub.addEventListener("userAuthenticated", e => {
-    contentTarget.innerHTML = ""
+    resetBackground.remove()
 })
 
 eventHub.addEventListener("click", e => {
@@ -26,10 +27,12 @@ eventHub.addEventListener("click", e => {
 
 const render = () => {
     contentTarget.innerHTML += `
+    
         <section class="login">
             <input id="login__username" type="text" placeholder="Enter your username">
             <button id="login__button">Log In</button>
         </section>
+    
     `
 }
 
