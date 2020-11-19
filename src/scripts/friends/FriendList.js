@@ -46,7 +46,7 @@ const render = () => {
 
     friendsContainer.innerHTML = ` 
 
-        <h2>friends</h2>
+        <h2>Friends</h2>
         <div class="friends__form">
         <div class="friend__input">
         <select id="friend__dropdown">
