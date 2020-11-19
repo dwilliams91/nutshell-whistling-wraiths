@@ -119,7 +119,8 @@ h2 {
 .articles__display,
 .friend__input,
 .friends__display,
-.task__form {
+.task__form,
+.tasks__complete {
     color: white;
     background-color: black;
     border: 1px solid red;

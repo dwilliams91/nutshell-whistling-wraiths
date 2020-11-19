@@ -43,15 +43,13 @@ export const Nutshell = () => {
     </article>
     <article class="section tasks">
         <h2>tasks</h2>
-        <div class="tasks__display">
-            <p>Event Cards</p>
-        </div>
+        <div class="tasks__display"></div>
+        <div class="tasks__complete"></div>
         <button id="task__save"> new task</button>
     </article>
     <article class="section articles">
         <h2>article</h2>
         <div class="articles__display">
-            <p>Article Cards Go here</p>
         </div>
         <div class="article__form">
         </div>
