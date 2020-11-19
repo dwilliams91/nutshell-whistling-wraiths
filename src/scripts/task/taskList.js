@@ -1,6 +1,6 @@
 // This module is responsible for rendering task information to the DOM
 import { getUsers, useUsers } from "../user/UserDataProvider.js"
-import { taskHtml } from "./task.js"
+import { taskHtml, completedTaskHtml } from "./task.js"
 import { editTaskForm } from "./taskForm.js"
 import {getTasks, updateTask, useTasks} from "./TaskProvider.js"
 
@@ -26,14 +26,22 @@ export const taskList = () => {
 const render = () => {
     // Select the html element to render to
     const contentContainer = document.querySelector(".tasks__display")
+    // Select the html element to render to for COMPLETED tasks
+    const completeContainer = document.querySelector(".tasks__complete")
     // get the id of the current user. Use parseInt to convert from string to integer
     const id = parseInt(sessionStorage.getItem("activeUser"))
     // get the tasks related to the current user
     const relatedTasks = taskArr.filter(task => task.userId === id && task.complete === false)
+    // get the COMPLETED tasks related to the current user
+    const completedTasks = taskArr.filter(task => task.userId === id && task.complete === true)
     // Iterate through the related tasks and generate the html
     const taskString = relatedTasks.map(task => taskHtml(task))
+    // Iterate through the completed tasks and generate the html
+    const completedTaskString = completedTasks.map(task => completedTaskHtml(task))
     // place the newly generated html in the element previously selected
-    contentContainer.innerHTML = taskString.join("")
+    contentContainer.innerHTML = `<h3>To do:</h3> ${taskString.join("")}`
+    // place the newly generated html for completed tasks in the element previously selected
+    completeContainer.innerHTML = `<h3>Completed: </h3> ${completedTaskString.join("")}`
 }
 
 // broadcast from TaskProvider.js, after a new task has been added, this will make taskList rerun so that the new task also renders to the DOM
