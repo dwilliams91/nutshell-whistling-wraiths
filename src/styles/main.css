@@ -16,7 +16,7 @@ header{
     background-position: center; 
     height: 150px;
     background-attachment: fixed;
-    /* //background-position: 100% 40%; */
+    display: flex;
     text-align: left;
     color: white;
     padding: 20px 5px 100px 5px;
@@ -151,14 +151,13 @@ section {
 .weatherBox {
 
     display: flex;
-
     color: white;
     background-color: black;
     border: 1px solid red;
-    padding: .25em;
-    height: auto;
-    top: .1rem;
-    position: fixed;
+    padding: .5em;
+    height: fit-content;
+    top: -2rem;
+    
     margin-left: 32.5em;
     flex-wrap: wrap;
 }

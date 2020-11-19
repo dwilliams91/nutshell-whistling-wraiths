@@ -2,11 +2,6 @@
 
 const contentTarget = document.querySelector(".auth--login")
 const eventHub = document.querySelector(".container")
-const resetBackground = document.querySelector(".auth")
-
-eventHub.addEventListener("userAuthenticated", e => {
-    resetBackground.remove()
-})
 
 eventHub.addEventListener("click", e => {
     if (e.target.id === "login__button") {
