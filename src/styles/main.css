@@ -90,11 +90,13 @@ h1{
 /* JFF black/white/red styling below */
 
 h2 {
-    background-color: white;
+    background-color: #79ad9f;
     position: sticky;
-    top: 1rem;
+    top: 0rem;
     height: 2em;
-    vertical-align: middle;
+    text-align: center;
+    align-items: stretch;
+    padding-top: .5em;
 }
 
 .messages,
@@ -164,9 +166,11 @@ section {
     text-align: right;
     background-color: #1982FC;
     color:white;
+    padding: 2px;
 }
 .otherMessages{
     background-color: #EEE;
+    padding:2px;
 }
 .displayButtons {
     display:none;
@@ -178,4 +182,8 @@ strong{
 .privateMessage {
     display: flex;
     flex-direction: column-reverse;
+}
+.privateMessage__display{
+    background-color: white;
+
 }
