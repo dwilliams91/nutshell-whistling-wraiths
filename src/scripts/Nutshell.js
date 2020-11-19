@@ -12,6 +12,7 @@ import { dispatchPrivateMessage } from "./message/PrivateChatForm.js"
 
 const contentTarget = document.querySelector(".dashboard")
 const eventHub = document.querySelector(".container")
+// this querySelect is so that when nutshell runs it removes the background image rendererd for login.
 const resetBackground = document.querySelector(".auth")
 
 export const Nutshell = () => {
@@ -69,6 +70,7 @@ defaultWeather()
 
 dispatchPrivateMessage()
 
+// this removes the login background div of class "auth"
 resetBackground.remove()
 }
 
