@@ -174,3 +174,8 @@ section {
 strong{
     color: #c49b60;
 }
+
+.privateMessage {
+    display: flex;
+    flex-direction: column-reverse;
+}
