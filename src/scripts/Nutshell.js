@@ -9,6 +9,7 @@ import { FriendList } from "./friends/FriendList.js"
 import { defaultWeather } from "./events/WeatherSelect.js"
 import { privateMessageList } from "./message/PrivateChatList.js"
 import { dispatchPrivateMessage } from "./message/PrivateChatForm.js"
+import { LoginForm } from "./auth/LoginForm.js"
 
 const contentTarget = document.querySelector(".dashboard")
 const eventHub = document.querySelector(".container")
@@ -62,6 +63,7 @@ export const Nutshell = () => {
         <h2>Weather</h2>
         <div class="h4Nashville"></div>
     </section>
+    <button id="logOut">Log out</button>
 </section>`
 taskList()
 messageList()
@@ -73,6 +75,13 @@ defaultWeather()
 
 dispatchPrivateMessage()
 
+eventHub.addEventListener("click", event => {
+    if (event.target.id === "logOut") {
+        sessionStorage.clear()
+        location.reload()
+
+    }
+})
 // this removes the login background div of class "auth"
 resetBackground.remove()
 }
