@@ -16,12 +16,14 @@ eventHub.addEventListener("privateChatStarted",e=>{
 
 export const privateMessageList=()=>{
     const contentTarget=document.querySelector(".friends")
-    contentTarget.innerHTML=` <h2>Private Chat</h2> <article class="section privateMessage">
+    contentTarget.innerHTML=` <h2>Private Chat</h2> 
+    <article class="privateMessage">
+    <div class="privateMessage__display"></div>
+    </article>
     <button id="backToFriends"> Back to Friends </button>
     <div class="privateMessage__form"></div>
-    <div class="privateMessage__display"></div>
-    </article>`
-
+    `
+    contentTarget.classList.add("privateMessages")
     const user=parseInt(sessionStorage.getItem("activeUser"))
     getMessages()
     .then(getUsers)
@@ -64,6 +66,8 @@ const render=(messages,users)=>{
 // Friends list listens for this
 eventHub.addEventListener("click",click=>{
     if (click.target.id==="backToFriends"){
+        const contentTarget=document.querySelector(".friends")
+        contentTarget.classList.remove("privateMessages")
         const RerenderFriends=new CustomEvent("RerenderFriends")
         eventHub.dispatchEvent(RerenderFriends)
     }

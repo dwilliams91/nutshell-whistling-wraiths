@@ -64,15 +64,18 @@ h1{
 }
 
 
-.messages__display {
+.messages__display, .privateMessage {
     display: flex;
     flex-direction: column-reverse;
-    height: 260px;
+    height: 245px;
     overflow: scroll;
     overflow-x: hidden;
+    background-color: white;
+    border: 1px solid #79ad9f;
+    padding: .25em;
 }
 
-.messages {
+.messages, .privateMessages {
     overflow: hidden
 }
 
@@ -107,12 +110,6 @@ h2 {
     height: 100%;
 }
 
-.messages__display {
-    /* color: white; */
-    background-color: white;
-    border: 1px solid #79ad9f;
-    padding: .25em;
-}
 
 #addFriendTarget,
 .events__display,
