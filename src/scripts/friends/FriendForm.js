@@ -1,4 +1,4 @@
-import { saveFriend, deleteFriend } from "./FriendDataProvider.js"
+import { saveFriend, deleteFriend, getFriends, useFriends } from "./FriendDataProvider.js"
 import { FriendList } from "./FriendList.js"
 import { messageList } from "../message/MessageList.js"
 import { Nutshell } from "../Nutshell.js"
@@ -34,17 +34,30 @@ eventHub.addEventListener("friendSaved", e => {
 eventHub.addEventListener("click", e => {
     if (e.target.id.startsWith("addFriend--")) {
         const [prefix, id, friendName] = e.target.id.split("--")
+        getFriends()
+        .then(() => {
+            const friendId = parseInt(id)
+            console.log(friendId)
+            const currentUser = parseInt(sessionStorage.getItem("activeUser"))
+            console.log(currentUser)
+            const friendCheck = useFriends().find(friend => friend.userId === currentUser && friend.following === friendId)
 
-        const friendDataFromMessage = new CustomEvent ("addFriendPrompt", {
-            detail: {
-                friendName,
-                userId: id
-            }
-        })
-        console.log("add friend from Message clicked", friendDataFromMessage.detail)
-        eventHub.dispatchEvent(friendDataFromMessage)
+            if (!(friendCheck)) {
+            const friendDataFromMessage = new CustomEvent ("addFriendPrompt", {
+                detail: {
+                    friendName,
+                    userId: id
+                }
+            })
+            console.log("add friend from Message clicked", friendDataFromMessage.detail)
+            eventHub.dispatchEvent(friendDataFromMessage)
+        }
     }
-})
+    )
+    }
+})      
+        
+        
 
 // first we want to define a function which will render a prompt on the DOM
 const addFriendPrompt = (friendName, friendUserId) => {
