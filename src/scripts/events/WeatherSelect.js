@@ -15,7 +15,7 @@ export const defaultWeather = () => {
             const iconAddress = `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`
             return `
                 <div class="weatherDay">
-                    <img src="${iconAddress}">
+                    <img class="icon" src="${iconAddress}">
                     <p class="date">${condensedDate}</p>
                     <p class="highTemp">High: ${high}</p>
                     <p class="lowTemp">Low: ${low}</p>
@@ -79,7 +79,7 @@ export const weatherMaker = (lat, long, cityName, date) => {
             const iconAddress = `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`
             return `
                 <div class="weatherDay">
-                    <img src="${iconAddress}">
+                    <img class="icon" src="${iconAddress}">
                     <p class="date">${date}</p>
                     <p class="highTemp">High: ${high}</p>
                     <p class="lowTemp">Low: ${low}</p>
